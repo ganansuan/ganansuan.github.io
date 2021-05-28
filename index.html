@@ -152,6 +152,105 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-一些可能碰到的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/05/28/%E4%B8%80%E4%BA%9B%E5%8F%AF%E8%83%BD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">一些可能碰到的问题</a>
+    </h1>
+  
+
+        
+        <a href="/2021/05/28/%E4%B8%80%E4%BA%9B%E5%8F%AF%E8%83%BD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  	<time datetime="2021-05-28T11:53:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="一些可能碰到的问题"><a href="#一些可能碰到的问题" class="headerlink" title="一些可能碰到的问题"></a>一些可能碰到的问题</h1><p>$ hexo d后</p>
+<p>ERROR Deployer not found: git</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save hexo-deployer-git</span><br></pre></td></tr></table></figure>
+
+
+
+<p>提交完成了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Branch &#39;master&#39; set up to track remote branch &#39;master&#39; from ...</span><br></pre></td></tr></table></figure>
+
+
+
+<p>md文件里插入图片</p>
+<p>如果插入的是网上的图片,大部分情况是可以显示的:比如</p>
+<p><img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2420744160,4087949052&fm=26&gp=0.jpg" alt="img"></p>
+<p>但是有些网址不给,比如语雀<a target="_blank" rel="noopener" href="https://www.yuque.com/">语雀 - 专业的云端知识库 · 语雀 (yuque.com)</a></p>
+<p>所以建议存到本地再上传,也可以避免不知道什么时候源文件丢失了</p>
+<ol>
+<li><p>在根目录下配置文件<code>_config.yml</code> 中有 <code>post_asset_folder:false改为true</code>。这样在建立文件时，<code>Hexo</code>会自动建立一个与文章同名的文件夹，这样就可以把与该文章相关的所有资源（图片）都放到那个文件夹里方便后面引用。</p>
+</li>
+<li><p>git bash安装插件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https:&#x2F;&#x2F;github.com&#x2F;7ym0n&#x2F;hexo-asset-image --save</span><br></pre></td></tr></table></figure>
+
+
+
+<p>（这是个修改过的插件，经测试无问题），使用这个插件来引入图片，而不是网上那些方法里说的用传统md语法相对路径的方法。</p>
+</li>
+<li><p>插入图片时改变方式：</p>
+</li>
+</ol>
+<p>md上传图片的语法是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![img](https:&#x2F;&#x2F;ss2.bdstatic.com&#x2F;70cFvnSh_Q1YnxGkpoWK1HF6hhy&#x2F;it&#x2F;u&#x3D;2420744160,4087949052&amp;fm&#x3D;26&amp;gp&#x3D;0.jpg)</span><br></pre></td></tr></table></figure>
+
+<p>这样是没用的,需要改成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% asset_img 此处为你的图片文件名.jpg 此处为你的图片描述 %&#125;</span><br></pre></td></tr></table></figure>
+
+<img src="/2021/05/28/%E4%B8%80%E4%BA%9B%E5%8F%AF%E8%83%BD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/u=2420744160,4087949052&fm=26&gp=0.jpg" class title="此处为你的图片描述">
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/05/28/%E4%B8%80%E4%BA%9B%E5%8F%AF%E8%83%BD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-初识spring" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
