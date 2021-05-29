@@ -16,7 +16,7 @@
 <meta property="og:description" content="梦开始的地方安装hexo下载安装node.js利用npm下载cnpm 1npm install -g cnpm –registry&#x3D;[https:&#x2F;&#x2F;registy.npm.taobao.org](https:&#x2F;&#x2F;registy.npm.taobao.org&#x2F;)  用cnpm安装hexo 1cnpm install -g hexo-cli">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-05-28T07:35:53.000Z">
-<meta property="article:modified_time" content="2021-05-28T13:05:11.131Z">
+<meta property="article:modified_time" content="2021-05-28T13:30:15.596Z">
 <meta property="article:author" content="凤歌">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -239,6 +239,12 @@
 
 <p>继续<code>hexo clean&amp;hexo g&amp;hexo s&amp;hexo d</code></p>
 <h3 id="主题的配置"><a href="#主题的配置" class="headerlink" title="主题的配置:"></a>主题的配置:</h3><p>可以本地上传头像,图片的存放路径为blog\themes\yilia\source\图片名称.jpg</p>
+<p>点击所有文章提示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">缺失模块。</span><br><span class="line">1、请确保node版本大于6.2</span><br><span class="line">2、在博客根目录（注意不是yilia根目录）执行以下命令：</span><br><span class="line">npm i hexo-generator-json-content --save</span><br></pre></td></tr></table></figure>
+
+<p>需要在blog_config.yml添加</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">jsonContent:</span><br><span class="line">    meta: false</span><br><span class="line">    pages: false</span><br><span class="line">    posts:</span><br><span class="line">      title: true</span><br><span class="line">      date: true</span><br><span class="line">      path: true</span><br><span class="line">      text: false</span><br><span class="line">      raw: false</span><br><span class="line">      content: false</span><br><span class="line">      slug: false</span><br><span class="line">      updated: false</span><br><span class="line">      comments: false</span><br><span class="line">      link: false</span><br><span class="line">      permalink: false</span><br><span class="line">      excerpt: false</span><br><span class="line">      categories: false</span><br><span class="line">      tags: true</span><br></pre></td></tr></table></figure>
+
 
       
 
