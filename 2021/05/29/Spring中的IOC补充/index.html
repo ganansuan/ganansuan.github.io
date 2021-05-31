@@ -6,22 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Spring中的IOC | 小站</title>
+  <title>Spring中的IOC补充 | 小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二、 Spring 中的 IOC1. IOC 介绍按照维基百科，IoC（Inversion of Control）控制反转，是面向对象编程中的一种设计原则，用来降低计算机代码之间的耦合度。 在传统面向对象的编码过程中，当类与类之间存在依赖关系时，通常会直接在类的内部创建依赖对象，这样就导致类与类之间形成了耦合，依赖关系越复杂，耦合程度就会越高，而耦合度高的代码会非常难以进行修改和单元测试。而 Io">
+  <meta name="description" content="第三种：使用注解的方式  先看看几个标记在类上的常用的注解：    @Controller 表示当前类对象是容器中的一个web层组件    @Service 表示当前类对象是容器中的一个service层组件   @Repository 表示当前类对象是容器中的一个dao层组件   @Component 表示当前类对象是容器中的一个普通组件   注：以上四个注解的共同点：  都标记在类上，都是在容器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring中的IOC">
-<meta property="og:url" content="http://example.com/2021/05/28/Spring%E4%B8%AD%E7%9A%84IOC/index.html">
+<meta property="og:title" content="Spring中的IOC补充">
+<meta property="og:url" content="http://example.com/2021/05/29/Spring%E4%B8%AD%E7%9A%84IOC%E8%A1%A5%E5%85%85/index.html">
 <meta property="og:site_name" content="小站">
-<meta property="og:description" content="二、 Spring 中的 IOC1. IOC 介绍按照维基百科，IoC（Inversion of Control）控制反转，是面向对象编程中的一种设计原则，用来降低计算机代码之间的耦合度。 在传统面向对象的编码过程中，当类与类之间存在依赖关系时，通常会直接在类的内部创建依赖对象，这样就导致类与类之间形成了耦合，依赖关系越复杂，耦合程度就会越高，而耦合度高的代码会非常难以进行修改和单元测试。而 Io">
+<meta property="og:description" content="第三种：使用注解的方式  先看看几个标记在类上的常用的注解：    @Controller 表示当前类对象是容器中的一个web层组件    @Service 表示当前类对象是容器中的一个service层组件   @Repository 表示当前类对象是容器中的一个dao层组件   @Component 表示当前类对象是容器中的一个普通组件   注：以上四个注解的共同点：  都标记在类上，都是在容器">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2021/05/28/Spring%E4%B8%AD%E7%9A%84IOC/yuque_diagram.jpg">
-<meta property="article:published_time" content="2021-05-28T12:29:17.000Z">
-<meta property="article:modified_time" content="2021-05-28T12:36:19.574Z">
+<meta property="article:published_time" content="2021-05-29T10:24:27.000Z">
+<meta property="article:modified_time" content="2021-05-31T10:26:35.736Z">
 <meta property="article:author" content="凤歌">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2021/05/28/Spring%E4%B8%AD%E7%9A%84IOC/yuque_diagram.jpg">
   
     <link rel="alternative" href="/atom.xml" title="小站" type="application/atom+xml">
   
@@ -167,80 +165,87 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Spring中的IOC" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Spring中的IOC补充" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Spring中的IOC
+      Spring中的IOC补充
     </h1>
   
 
         
-        <a href="/2021/05/28/Spring%E4%B8%AD%E7%9A%84IOC/" class="archive-article-date">
-  	<time datetime="2021-05-28T12:29:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-28</time>
+        <a href="/2021/05/29/Spring%E4%B8%AD%E7%9A%84IOC%E8%A1%A5%E5%85%85/" class="archive-article-date">
+  	<time datetime="2021-05-29T10:24:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="二、-Spring-中的-IOC"><a href="#二、-Spring-中的-IOC" class="headerlink" title="二、 Spring 中的 IOC"></a>二、 Spring 中的 IOC</h1><h3 id="1-IOC-介绍"><a href="#1-IOC-介绍" class="headerlink" title="1. IOC 介绍"></a>1. IOC 介绍</h3><p>按照<a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/%E6%8E%A7%E5%88%B6%E5%8F%8D%E8%BD%AC">维基百科</a>，IoC（Inversion of Control）控制反转，是面向对象编程中的一种设计原则，用来降低计算机代码之间的耦合度。</p>
-<p>在传统面向对象的编码过程中，当类与类之间存在依赖关系时，通常会直接在类的内部创建依赖对象，这样就导致类与类之间形成了耦合，依赖关系越复杂，耦合程度就会越高，而耦合度高的代码会非常难以进行修改和单元测试。而 IoC 则是专门提供一个容器进行依赖对象的创建和查找，将对依赖对象的控制权由类内部交到容器这里，这样就实现了类与类的解耦，保证所有的类都是可以灵活修改。</p>
-<p><strong>Spring中IOC</strong></p>
-<p>IOC 的含义：Inversion Of Control，控制反转，指的是将 bean 对象的创建、对象关联关系的维护由原来我们自己去创建、自己去维护对象之间的关联关系，反转给 spring 的容器来创建并维护对象之间的关联关系。</p>
-<p>IOC 的作用：解耦：解决了上层严重依赖下层的问题，实现了上层对下层的控制。 </p>
-<p>IOC 底层原理：xml 解析 + 反射 + 容器（HashMap） + 设计模式（单例）  </p>
-<h3 id="2-Spring-获取-IOC-容器的三种方式"><a href="#2-Spring-获取-IOC-容器的三种方式" class="headerlink" title="2. Spring 获取 IOC 容器的三种方式"></a>2. Spring 获取 IOC 容器的三种方式</h3><img src="/2021/05/28/Spring%E4%B8%AD%E7%9A%84IOC/yuque_diagram.jpg" class title="Spring 获取 IOC 容器的三种方式">
+        <p>第三种：<strong>使用注解的方式</strong> </p>
+<p>先看看几个<strong>标记在类上</strong>的常用的注解：</p>
+<table>
+<thead>
+<tr>
+<th><strong>@Controller</strong></th>
+<th>表示当前类对象是容器中的一个web层组件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>@Service</strong></td>
+<td>表示当前类对象是容器中的一个service层组件</td>
+</tr>
+<tr>
+<td><strong>@Repository</strong></td>
+<td>表示当前类对象是容器中的一个dao层组件</td>
+</tr>
+<tr>
+<td><strong>@Component</strong></td>
+<td>表示当前类对象是容器中的一个普通组件</td>
+</tr>
+</tbody></table>
+<p><strong>注：以上四个注解的共同点：</strong></p>
+<ol>
+<li>都标记在类上，都是在容器中生成一个对象，默认是单例的。</li>
+<li>都有一个 value 属性，value 属性值表示的是当前类对象在容器中的 id 值。</li>
+<li>如果不指定这些注解的 value 属性的时候，当前 bean 对象在容器中的 id 值是当前类名首字母小写，如果自己指定了注解 value 属性值，在获取对象的时候，要使用自己指定的 value 属性值获取，当一个注解只有value 属性值的时候，value= 可以省略。</li>
+</ol>
+<p>再看看给<strong>对象属性赋值</strong>的几个注解：</p>
+<table>
+<thead>
+<tr>
+<th><strong>@Value</strong></th>
+<th>相当于 xml 文件中的 value 属性值，给基本类型的属性赋值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>@Autowired</strong></td>
+<td>相当于 xml 文件中的 ref 属性值，给引用类型的属性赋值 （spring提供）</td>
+</tr>
+<tr>
+<td><strong>@Resource</strong></td>
+<td>相当于 xml 文件中的 ref 属性值，给引用类型的属性赋值（JDK提供）</td>
+</tr>
+</tbody></table>
+<p> <strong>注：@Autowired使用原理：</strong>当在一个属性上加了 @Autowired 之后， 默认是现根据当前属性的类型去容器中找该类型的唯一 bean 对象。</p>
+<p>第一种情况：容器中没有该类型的唯一 bean 对象，报错 。</p>
+<p>第二种情况：容器中有该类型的唯一 bean 对象，将容器中的唯一 bean 对象赋值给该属性。</p>
+<p>第三种情况：容器中有多个该类型的唯一 bean 对象，接着会根据当前属性名去容器中找 ，看看哪个 bean 对象的 id 值和当前属性名一致，如果有就赋值，没有就报错。  </p>
+<p><strong>注： @Scope 标记在类上、方法上，使用和含义同标签的 scope 属性一样。 同时基于注解的方式给对象的属性赋值，不需要提供属性的 set 方法。</strong>  </p>
+<p><strong>具体操作步骤如下：</strong></p>
+<p>第一步：导入所需jar包<code>spring-aop-5.3.6.jar</code>并在 <em>applicationContext.xml</em> 配置文件中<strong>开启组件扫描</strong>（引用context名称空间配置需要扫描的包）<code>&lt;context:component-scan base-package=&quot;com.fengge&quot;/&gt;</code></p>
+<p>第二步：在扫描包或者扫描包的子包下<strong>类上加注解</strong>。</p>
+<p>第三步：给对象的<strong>属性加注解</strong>。</p>
+<h3 id="8-加载-properties-文件"><a href="#8-加载-properties-文件" class="headerlink" title="8. 加载 properties 文件"></a>8. 加载 properties 文件</h3><p>第一步：导入 jar 包：mysql 驱动包、druid 的包 。</p>
+<p>第二步：在 spring 的配置文件中配置 。</p>
+<p>第三步：在容器中的 bean 对象中通过<code>$&#123;&#125;</code>根据 properties 文件中的键取对应的值使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 该标签&lt;context:property-placeholder&gt;作用是用来引入properties文件的属性：</span><br><span class="line">location:指定properties文件的路径和名称--&gt;</span><br><span class="line">&lt;context:property-placeholder location&#x3D;&quot;classpath:jdbc.properties&quot; &#x2F;&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;com.alibaba.druid.pool.DruidDataSource&quot; destroy-method&#x3D;&quot;close&quot;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;username&quot; value&#x3D;&quot;$&#123;jdbc.userName&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;password&quot; value&#x3D;&quot;$&#123;jdbc.password&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;driverClassName&quot; value&#x3D;&quot;$&#123;jdbc.driverClass&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;url&quot; value&#x3D;&quot;$&#123;jdbc.jdbcUrl&#125;&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
 
-<p>第一种：<code>ClassPathXmlApplicationContext()</code>：默认是去 src 目录下找配置文件 </p>
-<p>第二种：<code>FileSystemXmlApplicationContext()</code>：默认是去本地磁盘的具体位置去找对应的配置文件 </p>
-<p>第三种：<del>XmlBeanFactory</del>（已废弃）</p>
-<p><strong>注：一般使用第一种方式</strong></p>
-<h3 id="3-从容器中获取-bean-对象的两种方式及区别"><a href="#3-从容器中获取-bean-对象的两种方式及区别" class="headerlink" title="3.  从容器中获取 bean 对象的两种方式及区别"></a>3.  从容器中获取 bean 对象的两种方式及区别</h3><p>从容器中获取bean对象的两种方式在上一节，通过一个简单案例已经介绍过：<a target="_blank" rel="noopener" href="https://www.yuque.com/vieew/springnote/hcftah?inner=GvGyX">从容器中获取bean对象</a></p>
-<p>第一种：通过字节码的方式；第二种：通过容器中bean对象的id值或者name值的方式。</p>
-<p>它们的区别有3个：</p>
-<p>第一个：参数不同（一个是字符串类型，一个是字节码类型 ）</p>
-<p>第二个：返回值类型不同（一个是Object类型，一个是我们自定义的类）</p>
-<p>第三个：如果参数是字节码类型，要求容器中必须有<strong>该字节码类型的唯一bean对象</strong>，如果没有就会报错：<code>NoSuchBeanDefinitionException</code>；如果容器中有该类型的多个bean对象，会报错：<code>NoUniqueBeanDefinitionException</code>  。</p>
-<h3 id="4-依赖注入（DI）"><a href="#4-依赖注入（DI）" class="headerlink" title="4. 依赖注入（DI）"></a>4. 依赖注入（DI）</h3><p>DI 全称 Dependency Injection，它是控制反转的一种具体实现， DI与IOC的区别在于：IOC 是一种控制反转的思想，它的具体实现就是 DI  。在Java层面，说白了，IOC就是用来获取对象，DI就是给对象的属性赋值。</p>
-<h3 id="5-容器中-bean-对象的创建时机、底层原理、是否单例"><a href="#5-容器中-bean-对象的创建时机、底层原理、是否单例" class="headerlink" title="5. 容器中 bean 对象的创建时机、底层原理、是否单例"></a>5. 容器中 bean 对象的创建时机、底层原理、是否单例</h3><p><strong>创建时机</strong>：容器中的bean对象是在加载容器的时候创建的呢？还是从容器中获取bean对象的时候创建的 容器中的bean对象默认是在加载容器的时候，按着从上到下的顺序依次创建的。 </p>
-<p><strong>底层原理</strong>: xml解析+反射+容器+设计模式 。</p>
-<p><strong>是否单例</strong>: 默认情况下，容器中的bean对象是单例的。 如果不想让它是单例的，可以修改bean标签的scope属性。scope属性取值会影响bean对象的创建时机和是否单例。scope有两个取值：singleton 和 prototype。</p>
-<p>singleton（默认值）：单例的</p>
-<p>prototype（需要手动设置）：多例的  </p>
-<h3 id="6-容器中配置Bean对象的三种方式"><a href="#6-容器中配置Bean对象的三种方式" class="headerlink" title="6. 容器中配置Bean对象的三种方式"></a>6. 容器中配置Bean对象的三种方式</h3><p>容器中bean对象的三种创建方式</p>
-<p>第一种：<strong>构造器</strong>（无参构造器、有参构造器）</p>
-<p>第二种：<strong>静态工厂</strong>（通过类的静态方法得到的对象）</p>
-<p>第三种：<strong>实例工厂</strong>（通过类对象的普通方法得到的对象）</p>
-<p><em>配置文件 applicationContext.xml</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--1.无参构造器 --&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;com.vieew.bean.User&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;!--2.有参构造器 --&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;com.vieew.bean.User&quot;&gt;</span><br><span class="line">  &lt;constructor-arg name&#x3D;&quot;id&quot; value&#x3D;&quot;1001&quot;&#x2F;&gt;</span><br><span class="line">  &lt;constructor-arg name&#x3D;&quot;name&quot; value&#x3D;&quot;马云&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;!-- 静态工厂:是指的通过类的静态方法得到的对象 --&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;user&quot; class&#x3D;&quot;com.vieew.bean.StaticFactory&quot; factory-method&#x3D;&quot;getUser&quot; &#x2F;&gt;</span><br><span class="line">&lt;!-- 实例工厂:是指的通过类对象的普通方法得到的对象--&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;instanceFactory&quot; class&#x3D;&quot;com.vieew.bean.InstanceFactory&quot; &#x2F;&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;user2&quot; factory-bean&#x3D;&quot;instanceFactory&quot; factory-method&#x3D;&quot;getUser&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
-
-<p><em>JavaBean User.java</em></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String pwd;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(Integer id, String name, String pwd)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.pwd = pwd;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPwd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> pwd;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPwd</span><span class="params">(String pwd)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.pwd = pwd;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;User&#123;&quot;</span> +</span><br><span class="line">                <span class="string">&quot;name=&#x27;&quot;</span> + name + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&quot;, pwd=&#x27;&quot;</span> + pwd + <span class="string">&#x27;\&#x27;&#x27;</span> +</span><br><span class="line">                <span class="string">&#x27;&#125;&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em>静态工厂  StaticFactory.java</em></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StaticFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> User <span class="title">getUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User(<span class="number">1002</span>,<span class="string">&quot;马花&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p><em>实例工厂 InstanceFactory.java</em></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InstanceFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> User <span class="title">getUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> User(<span class="number">1003</span>,<span class="string">&quot;马力&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h3 id="7-给对象的属性赋值的三种方式"><a href="#7-给对象的属性赋值的三种方式" class="headerlink" title="7. 给对象的属性赋值的三种方式"></a>7. 给对象的属性赋值的三种方式</h3><p>第一种：通过<strong>有参构造器</strong>， 使用<code>&lt;constructor-arg&gt;</code>标签：</p>
-<p><code>name</code>属性：构造器中参数的名字</p>
-<p><code>value</code>属性：表示设置的参数值 </p>
-<p><code>index</code>属性：指定当前参数在构造器中的位置</p>
-<p><code>type</code>属性：指定当前参数的类型 </p>
-<p><strong>结论：</strong>通过构造器给对象的属性赋值的时候， 我们可以通过构造器的 <code>name、value、index、type </code>属性可以<strong>唯一的确定任何一个构造器</strong> 。</p>
-<p>第二种：（1）通过<code>set</code>方法 </p>
-<p>（2）通过<code>property</code>标签 </p>
-<p>（3）通过<code>p</code>名称空间。</p>
-<p><strong>注：后两个本质上都是通过set方法赋值</strong></p>
-<p>第三种：使用注解的方式 </p>
-<p><strong>（待后续补充 . . . . . .）</strong></p>
-<p><em>配置文件 applicationContext.xml</em></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 1.通过构造器的方式给对象的属性赋值 --&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;com.vieew.bean.Book&quot;&gt;</span><br><span class="line">  &lt;constructor-arg name&#x3D;&quot;bid&quot; value&#x3D;&quot;101&quot; index&#x3D;&quot;1&quot; type&#x3D;&quot;java.lang.Integer&quot;&#x2F;&gt;</span><br><span class="line">  &lt;constructor-arg name&#x3D;&quot;bookName&quot; value&#x3D;&quot;斗破苍穹&quot;&#x2F;&gt;</span><br><span class="line">  &lt;constructor-arg name&#x3D;&quot;price&quot; value&#x3D;&quot;100.89&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 2.通过p标签(set方法)给对象的属性赋值 --&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;book1&quot; class&#x3D;&quot;com.vieew.bean.Book&quot; p:bid&#x3D;&quot;102&quot; p:bookName&#x3D;&quot;一剪没&quot; p:price&#x3D;&quot;32&quot;&#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 2.通过property标签(set方法)给对象的属性赋值 --&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;book1&quot; class&#x3D;&quot;com.vieew.bean.Book&quot;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;bid&quot; value&#x3D;&quot;110&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;bookName&quot; value&#x3D;&quot;Java从入门到放弃&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;price&quot; value&#x3D;&quot;30&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+<p>测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testApp01</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">    ApplicationContext app = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;annotation.xml&quot;</span>);</span><br><span class="line">    DruidDataSource bean = context.getBean(DruidDataSource.class);</span><br><span class="line">    DruidPooledConnection connection = bean.getConnection(); <span class="comment">//获取连接</span></span><br><span class="line">    System.out.println(connection); <span class="comment">//看是否获取到了连接对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
 
@@ -320,7 +325,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/05/28/Spring%E4%B8%AD%E7%9A%84IOC/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/05/29/Spring%E4%B8%AD%E7%9A%84IOC%E8%A1%A5%E5%85%85/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -335,8 +340,8 @@
 <nav id="article-nav">
   
   
-    <a href="/2017/05/28/%E5%88%9D%E8%AF%86spring/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">初识spring</div>
+    <a href="/2017/05/28/Spring%E4%B8%AD%E7%9A%84IOC/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring中的IOC</div>
       <i class="icon-circle-right"></i>
     </a>
   
