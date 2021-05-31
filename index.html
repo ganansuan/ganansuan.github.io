@@ -203,8 +203,38 @@
 <p>将切面应用到目标对象并导致代理对象创建的过程。</p>
 <p><strong>8、引入（introduction）</strong></p>
 <p>在不修改代码的前提下，引入可以在<strong>运行期</strong>为类动态地添加一些方法或字段。</p>
+<h3 id="2-5-AOP对于问题的实现"><a href="#2-5-AOP对于问题的实现" class="headerlink" title="2_5. AOP对于问题的实现"></a>2_5. AOP对于问题的实现</h3><p>第一步:创建动态web工程,导入jar包</p>
+<p>第二步:需要将被拓展的类和拓展的类加入到容器中</p>
+<p>第三步:在Spring配置文件中开启基于注解的切面支持及在拓展的类上加@Aspect注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;aop:aspectj-autoproxy&#x2F;&gt;			&#x2F;&#x2F;:在Spring配置文件中开启基于注解的切面支持</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Aspect</span>								<span class="comment">//在拓展的类上加@Aspect注解</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogAspect</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
+<p>第四步:在拓展的类的方法上指定切入点表达式（切入点表达式的内容见下文）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before(value = &quot;execution(public int com.fengge.aop.CaculatorImpl.add(int ,int ))&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p>第五步:测试</p>
 <h3 id="3-图解-AOP-中涉及到的几个概念"><a href="#3-图解-AOP-中涉及到的几个概念" class="headerlink" title="3. 图解 AOP 中涉及到的几个概念"></a>3. 图解 AOP 中涉及到的几个概念</h3><img src="/2021/05/31/Spring%E4%B8%AD%E7%9A%84AOP/AOP.png" class title="图解 AOP 中涉及到的几个概念">
 
+<p>补充:</p>
+<p>JDK动态代理: </p>
+<ol>
+<li>被代理类和代理类是兄弟关系</li>
+<li>如果想要获取容器中的代理类对象<ol>
+<li>通过字节码的方式: 接口类型</li>
+<li>bean对象的id值: 默认是被代理类类名首字母小写<br>会获取到一个叫 全类名$Proxy 的bean对象</li>
+</ol>
+</li>
+</ol>
+<p>CGLIB动态代理: </p>
+<ol>
+<li>被代理类和代理类是父子关系</li>
+<li>如果想要获取容器中的代理类对象<ol>
+<li>字节码方式: 被代理类字节码</li>
+<li>bean对象的id值: 默认是被代理类类名首字母小写<br>如果对bean对象的value进行了修改,会获取到一个叫 全类名$$EnhancerByCGLIB$$hashcode 的bean对象</li>
+</ol>
+</li>
+</ol>
 <h3 id="4-Spring-AOP-的底层原理"><a href="#4-Spring-AOP-的底层原理" class="headerlink" title="4. Spring AOP 的底层原理"></a>4. Spring AOP 的底层原理</h3><img src="/2021/05/31/Spring%E4%B8%AD%E7%9A%84AOP/diagram.jpg" class title="Spring AOP 的底层原理">
 
 <p><strong>静态代理和动态代理这两种代理方式的相同点和不同点</strong></p>
@@ -322,11 +352,15 @@
 <table>
 <thead>
 <tr>
-<th><strong>@Controller</strong></th>
-<th>表示当前类对象是容器中的一个web层组件</th>
+<th>注解</th>
+<th>作用</th>
 </tr>
 </thead>
 <tbody><tr>
+<td><strong>@Controller</strong></td>
+<td>表示当前类对象是容器中的一个web层组件</td>
+</tr>
+<tr>
 <td><strong>@Service</strong></td>
 <td>表示当前类对象是容器中的一个service层组件</td>
 </tr>
@@ -349,11 +383,15 @@
 <table>
 <thead>
 <tr>
-<th><strong>@Value</strong></th>
-<th>相当于 xml 文件中的 value 属性值，给基本类型的属性赋值</th>
+<th>注解</th>
+<th>作用</th>
 </tr>
 </thead>
 <tbody><tr>
+<td><strong>@Value</strong></td>
+<td>相当于 xml 文件中的 value 属性值，给基本类型的属性赋值</td>
+</tr>
+<tr>
 <td><strong>@Autowired</strong></td>
 <td>相当于 xml 文件中的 ref 属性值，给引用类型的属性赋值 （spring提供）</td>
 </tr>
@@ -371,10 +409,17 @@
 <p>第一步：导入所需jar包<code>spring-aop-5.3.6.jar</code>并在 <em>applicationContext.xml</em> 配置文件中<strong>开启组件扫描</strong>（引用context名称空间配置需要扫描的包）<code>&lt;context:component-scan base-package=&quot;com.fengge&quot;/&gt;</code></p>
 <p>第二步：在扫描包或者扫描包的子包下<strong>类上加注解</strong>。</p>
 <p>第三步：给对象的<strong>属性加注解</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(value=&quot;字面量&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line"><span class="meta">@AutoWired</span></span><br><span class="line"><span class="keyword">private</span> Book book;</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="8-加载-properties-文件"><a href="#8-加载-properties-文件" class="headerlink" title="8. 加载 properties 文件"></a>8. 加载 properties 文件</h3><p>第一步：导入 jar 包：mysql 驱动包、druid 的包 。</p>
 <p>第二步：在 spring 的配置文件中配置 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 该标签&lt;context:property-placeholder&gt;作用是用来引入properties文件的属性：</span><br><span class="line">location:指定properties文件的路径和名称--&gt;</span><br><span class="line">&lt;context:property-placeholder location&#x3D;&quot;classpath:jdbc.properties&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
 <p>第三步：在容器中的 bean 对象中通过<code>$&#123;&#125;</code>根据 properties 文件中的键取对应的值使用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 该标签&lt;context:property-placeholder&gt;作用是用来引入properties文件的属性：</span><br><span class="line">location:指定properties文件的路径和名称--&gt;</span><br><span class="line">&lt;context:property-placeholder location&#x3D;&quot;classpath:jdbc.properties&quot; &#x2F;&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;com.alibaba.druid.pool.DruidDataSource&quot; destroy-method&#x3D;&quot;close&quot;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;username&quot; value&#x3D;&quot;$&#123;jdbc.userName&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;password&quot; value&#x3D;&quot;$&#123;jdbc.password&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;driverClassName&quot; value&#x3D;&quot;$&#123;jdbc.driverClass&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;url&quot; value&#x3D;&quot;$&#123;jdbc.jdbcUrl&#125;&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>注意，最好把druid的properties文件的userName改成jdbc.userName，不然有很大概率链接出错</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;com.alibaba.druid.pool.DruidDataSource&quot; destroy-method&#x3D;&quot;close&quot;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;username&quot; value&#x3D;&quot;$&#123;jdbc.userName&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;password&quot; value&#x3D;&quot;$&#123;jdbc.password&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;driverClassName&quot; value&#x3D;&quot;$&#123;jdbc.driverClass&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;url&quot; value&#x3D;&quot;$&#123;jdbc.jdbcUrl&#125;&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
 
 <p>测试代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testApp01</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">    ApplicationContext app = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;annotation.xml&quot;</span>);</span><br><span class="line">    DruidDataSource bean = context.getBean(DruidDataSource.class);</span><br><span class="line">    DruidPooledConnection connection = bean.getConnection(); <span class="comment">//获取连接</span></span><br><span class="line">    System.out.println(connection); <span class="comment">//看是否获取到了连接对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>

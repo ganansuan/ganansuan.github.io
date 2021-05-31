@@ -18,7 +18,7 @@
 <meta property="og:image" content="http://example.com/2021/05/31/Spring%E4%B8%AD%E7%9A%84AOP/AOP.png">
 <meta property="og:image" content="http://example.com/2021/05/31/Spring%E4%B8%AD%E7%9A%84AOP/diagram.jpg">
 <meta property="article:published_time" content="2021-05-31T10:30:40.000Z">
-<meta property="article:modified_time" content="2021-05-31T10:41:55.887Z">
+<meta property="article:modified_time" content="2021-05-31T13:22:04.673Z">
 <meta property="article:author" content="凤歌">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -208,8 +208,38 @@
 <p>将切面应用到目标对象并导致代理对象创建的过程。</p>
 <p><strong>8、引入（introduction）</strong></p>
 <p>在不修改代码的前提下，引入可以在<strong>运行期</strong>为类动态地添加一些方法或字段。</p>
+<h3 id="2-5-AOP对于问题的实现"><a href="#2-5-AOP对于问题的实现" class="headerlink" title="2_5. AOP对于问题的实现"></a>2_5. AOP对于问题的实现</h3><p>第一步:创建动态web工程,导入jar包</p>
+<p>第二步:需要将被拓展的类和拓展的类加入到容器中</p>
+<p>第三步:在Spring配置文件中开启基于注解的切面支持及在拓展的类上加@Aspect注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;aop:aspectj-autoproxy&#x2F;&gt;			&#x2F;&#x2F;:在Spring配置文件中开启基于注解的切面支持</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Aspect</span>								<span class="comment">//在拓展的类上加@Aspect注解</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogAspect</span> </span>&#123;</span><br></pre></td></tr></table></figure>
+
+<p>第四步:在拓展的类的方法上指定切入点表达式（切入点表达式的内容见下文）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before(value = &quot;execution(public int com.fengge.aop.CaculatorImpl.add(int ,int ))&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p>第五步:测试</p>
 <h3 id="3-图解-AOP-中涉及到的几个概念"><a href="#3-图解-AOP-中涉及到的几个概念" class="headerlink" title="3. 图解 AOP 中涉及到的几个概念"></a>3. 图解 AOP 中涉及到的几个概念</h3><img src="/2021/05/31/Spring%E4%B8%AD%E7%9A%84AOP/AOP.png" class title="图解 AOP 中涉及到的几个概念">
 
+<p>补充:</p>
+<p>JDK动态代理: </p>
+<ol>
+<li>被代理类和代理类是兄弟关系</li>
+<li>如果想要获取容器中的代理类对象<ol>
+<li>通过字节码的方式: 接口类型</li>
+<li>bean对象的id值: 默认是被代理类类名首字母小写<br>会获取到一个叫 全类名$Proxy 的bean对象</li>
+</ol>
+</li>
+</ol>
+<p>CGLIB动态代理: </p>
+<ol>
+<li>被代理类和代理类是父子关系</li>
+<li>如果想要获取容器中的代理类对象<ol>
+<li>字节码方式: 被代理类字节码</li>
+<li>bean对象的id值: 默认是被代理类类名首字母小写<br>如果对bean对象的value进行了修改,会获取到一个叫 全类名$$EnhancerByCGLIB$$hashcode 的bean对象</li>
+</ol>
+</li>
+</ol>
 <h3 id="4-Spring-AOP-的底层原理"><a href="#4-Spring-AOP-的底层原理" class="headerlink" title="4. Spring AOP 的底层原理"></a>4. Spring AOP 的底层原理</h3><img src="/2021/05/31/Spring%E4%B8%AD%E7%9A%84AOP/diagram.jpg" class title="Spring AOP 的底层原理">
 
 <p><strong>静态代理和动态代理这两种代理方式的相同点和不同点</strong></p>

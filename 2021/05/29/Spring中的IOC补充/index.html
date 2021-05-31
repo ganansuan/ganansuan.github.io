@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>Spring中的IOC补充 | 小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="二、 Spring 中的 IOC补充第三种：使用注解的方式  先看看几个标记在类上的常用的注解：    @Controller 表示当前类对象是容器中的一个web层组件    @Service 表示当前类对象是容器中的一个service层组件   @Repository 表示当前类对象是容器中的一个dao层组件   @Component 表示当前类对象是容器中的一个普通组件   注：以上四个注解的">
+  <meta name="description" content="二、 Spring 中的 IOC补充第三种：使用注解的方式  先看看几个标记在类上的常用的注解：    注解 作用    @Controller 表示当前类对象是容器中的一个web层组件   @Service 表示当前类对象是容器中的一个service层组件   @Repository 表示当前类对象是容器中的一个dao层组件   @Component 表示当前类对象是容器中的一个普通组件   注">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring中的IOC补充">
 <meta property="og:url" content="http://example.com/2021/05/29/Spring%E4%B8%AD%E7%9A%84IOC%E8%A1%A5%E5%85%85/index.html">
 <meta property="og:site_name" content="小站">
-<meta property="og:description" content="二、 Spring 中的 IOC补充第三种：使用注解的方式  先看看几个标记在类上的常用的注解：    @Controller 表示当前类对象是容器中的一个web层组件    @Service 表示当前类对象是容器中的一个service层组件   @Repository 表示当前类对象是容器中的一个dao层组件   @Component 表示当前类对象是容器中的一个普通组件   注：以上四个注解的">
+<meta property="og:description" content="二、 Spring 中的 IOC补充第三种：使用注解的方式  先看看几个标记在类上的常用的注解：    注解 作用    @Controller 表示当前类对象是容器中的一个web层组件   @Service 表示当前类对象是容器中的一个service层组件   @Repository 表示当前类对象是容器中的一个dao层组件   @Component 表示当前类对象是容器中的一个普通组件   注">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-05-29T10:24:27.000Z">
-<meta property="article:modified_time" content="2021-05-31T10:30:17.474Z">
+<meta property="article:modified_time" content="2021-05-31T12:28:39.477Z">
 <meta property="article:author" content="凤歌">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -190,11 +190,15 @@
 <table>
 <thead>
 <tr>
-<th><strong>@Controller</strong></th>
-<th>表示当前类对象是容器中的一个web层组件</th>
+<th>注解</th>
+<th>作用</th>
 </tr>
 </thead>
 <tbody><tr>
+<td><strong>@Controller</strong></td>
+<td>表示当前类对象是容器中的一个web层组件</td>
+</tr>
+<tr>
 <td><strong>@Service</strong></td>
 <td>表示当前类对象是容器中的一个service层组件</td>
 </tr>
@@ -217,11 +221,15 @@
 <table>
 <thead>
 <tr>
-<th><strong>@Value</strong></th>
-<th>相当于 xml 文件中的 value 属性值，给基本类型的属性赋值</th>
+<th>注解</th>
+<th>作用</th>
 </tr>
 </thead>
 <tbody><tr>
+<td><strong>@Value</strong></td>
+<td>相当于 xml 文件中的 value 属性值，给基本类型的属性赋值</td>
+</tr>
+<tr>
 <td><strong>@Autowired</strong></td>
 <td>相当于 xml 文件中的 ref 属性值，给引用类型的属性赋值 （spring提供）</td>
 </tr>
@@ -239,10 +247,17 @@
 <p>第一步：导入所需jar包<code>spring-aop-5.3.6.jar</code>并在 <em>applicationContext.xml</em> 配置文件中<strong>开启组件扫描</strong>（引用context名称空间配置需要扫描的包）<code>&lt;context:component-scan base-package=&quot;com.fengge&quot;/&gt;</code></p>
 <p>第二步：在扫描包或者扫描包的子包下<strong>类上加注解</strong>。</p>
 <p>第三步：给对象的<strong>属性加注解</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Value(value=&quot;字面量&quot;)</span></span><br><span class="line"><span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line"><span class="meta">@AutoWired</span></span><br><span class="line"><span class="keyword">private</span> Book book;</span><br></pre></td></tr></table></figure>
+
+
+
 <h3 id="8-加载-properties-文件"><a href="#8-加载-properties-文件" class="headerlink" title="8. 加载 properties 文件"></a>8. 加载 properties 文件</h3><p>第一步：导入 jar 包：mysql 驱动包、druid 的包 。</p>
 <p>第二步：在 spring 的配置文件中配置 。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 该标签&lt;context:property-placeholder&gt;作用是用来引入properties文件的属性：</span><br><span class="line">location:指定properties文件的路径和名称--&gt;</span><br><span class="line">&lt;context:property-placeholder location&#x3D;&quot;classpath:jdbc.properties&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
+
 <p>第三步：在容器中的 bean 对象中通过<code>$&#123;&#125;</code>根据 properties 文件中的键取对应的值使用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 该标签&lt;context:property-placeholder&gt;作用是用来引入properties文件的属性：</span><br><span class="line">location:指定properties文件的路径和名称--&gt;</span><br><span class="line">&lt;context:property-placeholder location&#x3D;&quot;classpath:jdbc.properties&quot; &#x2F;&gt;</span><br><span class="line">&lt;bean class&#x3D;&quot;com.alibaba.druid.pool.DruidDataSource&quot; destroy-method&#x3D;&quot;close&quot;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;username&quot; value&#x3D;&quot;$&#123;jdbc.userName&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;password&quot; value&#x3D;&quot;$&#123;jdbc.password&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;driverClassName&quot; value&#x3D;&quot;$&#123;jdbc.driverClass&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;url&quot; value&#x3D;&quot;$&#123;jdbc.jdbcUrl&#125;&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>注意，最好把druid的properties文件的userName改成jdbc.userName，不然有很大概率链接出错</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean class&#x3D;&quot;com.alibaba.druid.pool.DruidDataSource&quot; destroy-method&#x3D;&quot;close&quot;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;username&quot; value&#x3D;&quot;$&#123;jdbc.userName&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;password&quot; value&#x3D;&quot;$&#123;jdbc.password&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;driverClassName&quot; value&#x3D;&quot;$&#123;jdbc.driverClass&#125;&quot;&#x2F;&gt;</span><br><span class="line">  &lt;property name&#x3D;&quot;url&quot; value&#x3D;&quot;$&#123;jdbc.jdbcUrl&#125;&quot;&#x2F;&gt;</span><br><span class="line">&lt;&#x2F;bean&gt;</span><br></pre></td></tr></table></figure>
 
 <p>测试代码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testApp01</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">    ApplicationContext app = <span class="keyword">new</span> ClassPathXmlApplicationContext(<span class="string">&quot;annotation.xml&quot;</span>);</span><br><span class="line">    DruidDataSource bean = context.getBean(DruidDataSource.class);</span><br><span class="line">    DruidPooledConnection connection = bean.getConnection(); <span class="comment">//获取连接</span></span><br><span class="line">    System.out.println(connection); <span class="comment">//看是否获取到了连接对象</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
