@@ -6,16 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2021 | 小站</title>
+  <title>Spring中的AOP | 小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小站">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="Spring中的AOP1. AOP 简介AOP（Aspect Oriented Programming），即面向切面编程，可以说是OOP（Object Oriented Programming，面向对象编程）的补充和完善。OOP引入封装、继承、多态等概念来建立一种对象层次结构，用于模拟公共行为的一个集合。不过OOP允许开发者定义纵向的关系，但并不适合定义横向的关系，例如日志功能。日志代码往往横向地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring中的AOP">
+<meta property="og:url" content="http://example.com/2017/05/31/Spring%E4%B8%AD%E7%9A%84AOP/index.html">
 <meta property="og:site_name" content="小站">
+<meta property="og:description" content="Spring中的AOP1. AOP 简介AOP（Aspect Oriented Programming），即面向切面编程，可以说是OOP（Object Oriented Programming，面向对象编程）的补充和完善。OOP引入封装、继承、多态等概念来建立一种对象层次结构，用于模拟公共行为的一个集合。不过OOP允许开发者定义纵向的关系，但并不适合定义横向的关系，例如日志功能。日志代码往往横向地">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2017/05/31/Spring%E4%B8%AD%E7%9A%84AOP/AOP.png">
+<meta property="og:image" content="http://example.com/2017/05/31/Spring%E4%B8%AD%E7%9A%84AOP/diagram.jpg">
+<meta property="article:published_time" content="2017-05-31T10:30:40.000Z">
+<meta property="article:modified_time" content="2021-06-01T00:51:24.800Z">
 <meta property="article:author" content="凤歌">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2017/05/31/Spring%E4%B8%AD%E7%9A%84AOP/AOP.png">
   
     <link rel="alternative" href="/atom.xml" title="小站" type="application/atom+xml">
   
@@ -161,76 +168,257 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Spring中的AOP" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/31/Spring%E4%B8%AD%E7%9A%84AOP/" class="archive-article-date">
-  	<time datetime="2021-05-31T10:30:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/31/Spring%E4%B8%AD%E7%9A%84AOP/">Spring中的AOP</a>
+    <h1 class="article-title" itemprop="name">
+      Spring中的AOP
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/29/Spring%E4%B8%AD%E7%9A%84IOC%E8%A1%A5%E5%85%85/" class="archive-article-date">
-  	<time datetime="2021-05-29T10:24:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-29</time>
+        
+        <a href="/2017/05/31/Spring%E4%B8%AD%E7%9A%84AOP/" class="archive-article-date">
+  	<time datetime="2017-05-31T10:30:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/29/Spring%E4%B8%AD%E7%9A%84IOC%E8%A1%A5%E5%85%85/">Spring中的IOC补充</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Spring中的AOP"><a href="#Spring中的AOP" class="headerlink" title="Spring中的AOP"></a>Spring中的AOP</h1><h3 id="1-AOP-简介"><a href="#1-AOP-简介" class="headerlink" title="1. AOP 简介"></a>1. AOP 简介</h3><p>AOP（Aspect Oriented Programming），即<strong>面向切面编程</strong>，可以说是OOP（Object Oriented Programming，面向对象编程）的补充和完善。OOP引入封装、继承、多态等概念来建立一种对象层次结构，用于模拟公共行为的一个集合。不过OOP允许开发者定义纵向的关系，但并不适合定义横向的关系，例如日志功能。日志代码往往横向地散布在所有对象层次中，而与它对应的对象的核心功能毫无关系对于其他类型的代码，如安全性、异常处理等也都是如此。</p>
+<p><strong>AOP含义</strong>：AOP和 OOP 不存在谁取代谁的关系，它们是相互促进，相互补充，AOP是在不改变原来 OOP 类代码的基础之上，对原来类的功能进行拓展。</p>
+<p><strong>AOP 作用</strong>：解决了软件工程中的关注点分离问题。可以让系统变得高内聚、低耦合、便于项目后期的维护和拓展。 </p>
+<p><strong>AOP底层原理</strong>：动态代理。 </p>
+<h3 id="2-Aop-中的几个核心概念"><a href="#2-Aop-中的几个核心概念" class="headerlink" title="2. Aop 中的几个核心概念"></a>2. Aop 中的几个核心概念</h3><p><strong>1、横切关注点</strong></p>
+<p>对哪些方法进行拦截，拦截后怎么处理，这些关注点称之为横切关注点。</p>
+<p><strong>2、切面（aspect）</strong></p>
+<p>类是对物体特征的抽象，切面就是对横切关注点的抽象：<strong>本质是一个类</strong>。</p>
+<p><strong>3、连接点（joinpoint）</strong></p>
+<p>被拦截到的点，因为 Spring 只支持方法类型的连接点，所以在Spring中连接点指的就是被拦截到的方法，实际上连接点还可以是字段或者构造器。</p>
+<p><strong>4、切入点（pointcut）</strong></p>
+<p>对连接点进行拦截的定义，表示通知对谁进行拓展，<strong>本质是表达式</strong> 。</p>
+<p><strong>5、通知（advice）</strong></p>
+<p>表示拓展的功能，<strong>本质是方法</strong>：指拦截到连接点之后要执行的代码，通知分为前置、后置、异常、最终、环绕通知五类。</p>
+<p><strong>6、目标对象（target）</strong></p>
+<p>代理的目标对象。</p>
+<p><strong>7、织入（Weaving）</strong></p>
+<p>将切面应用到目标对象并导致代理对象创建的过程。</p>
+<p><strong>8、引入（introduction）</strong></p>
+<p>在不修改代码的前提下，引入可以在<strong>运行期</strong>为类动态地添加一些方法或字段。</p>
+<h3 id="2-5-AOP对于问题的实现"><a href="#2-5-AOP对于问题的实现" class="headerlink" title="2_5. AOP对于问题的实现"></a>2_5. AOP对于问题的实现</h3><p>第一步:创建动态web工程,导入jar包</p>
+<p>第二步:需要将被拓展的类和拓展的类加入到容器中</p>
+<p>第三步:在Spring配置文件中开启基于注解的切面支持及在拓展的类上加@Aspect注解</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;aop:aspectj-autoproxy&#x2F;&gt;			&#x2F;&#x2F;:在Spring配置文件中开启基于注解的切面支持</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Aspect</span>								<span class="comment">//在拓展的类上加@Aspect注解</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogAspect</span> </span>&#123;</span><br></pre></td></tr></table></figure>
 
+<p>第四步:在拓展的类的方法上指定切入点表达式（切入点表达式的内容见下文）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before(value = &quot;execution(public int com.fengge.aop.CaculatorImpl.add(int ,int ))&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<p>第五步:测试</p>
+<h3 id="3-图解-AOP-中涉及到的几个概念"><a href="#3-图解-AOP-中涉及到的几个概念" class="headerlink" title="3. 图解 AOP 中涉及到的几个概念"></a>3. 图解 AOP 中涉及到的几个概念</h3><img src="/2017/05/31/Spring%E4%B8%AD%E7%9A%84AOP/AOP.png" class title="图解 AOP 中涉及到的几个概念">
+
+<p>补充:</p>
+<p>JDK动态代理: </p>
+<ol>
+<li>被代理类和代理类是兄弟关系</li>
+<li>如果想要获取容器中的代理类对象<ol>
+<li>通过字节码的方式: 接口类型</li>
+<li>bean对象的id值: 默认是被代理类类名首字母小写<br>会获取到一个叫 全类名$Proxy 的bean对象</li>
+</ol>
+</li>
+</ol>
+<p>CGLIB动态代理: </p>
+<ol>
+<li>被代理类和代理类是父子关系</li>
+<li>如果想要获取容器中的代理类对象<ol>
+<li>字节码方式: 被代理类字节码</li>
+<li>bean对象的id值: 默认是被代理类类名首字母小写<br>如果对bean对象的value进行了修改,会获取到一个叫 全类名$$EnhancerByCGLIB$$hashcode 的bean对象</li>
+</ol>
+</li>
+</ol>
+<h3 id="4-Spring-AOP-的底层原理"><a href="#4-Spring-AOP-的底层原理" class="headerlink" title="4. Spring AOP 的底层原理"></a>4. Spring AOP 的底层原理</h3><img src="/2017/05/31/Spring%E4%B8%AD%E7%9A%84AOP/diagram.jpg" class title="Spring AOP 的底层原理">
+
+<p><strong>静态代理和动态代理这两种代理方式的相同点和不同点</strong></p>
+<p><strong>相同点：</strong></p>
+<p>1.被代理类和代理类都实现相同的接口</p>
+<p>2.都是在不改变被代理类代码的基础上对被代理类功能进行拓展</p>
+<p><strong>不同点：</strong></p>
+<p>1.静态代理只能代理某个接口的实现类对象</p>
+<p>2.动态代理可以代理任意接口的实现类对象</p>
+<h3 id="5-AOP-切面的相关配置（注解和-xml）"><a href="#5-AOP-切面的相关配置（注解和-xml）" class="headerlink" title="5. AOP 切面的相关配置（注解和 xml）"></a>5. AOP 切面的相关配置（注解和 xml）</h3><h4 id="5-1-基于注解配置"><a href="#5-1-基于注解配置" class="headerlink" title="5.1 基于注解配置"></a>5.1 基于注解配置</h4><ul>
+<li><strong>声明切面：</strong><code>@Aspect</code></li>
+<li><strong>几种通知</strong></li>
+</ul>
+<ol>
+<li><strong>前置通知</strong>（<code>@Before</code>）：在目标方法执行之前，先执行前置通知。</li>
+<li><strong>后置通知</strong>（<code>@After</code>）：无论目标方法是否执行成功，在目标方法执行之后，后置通知都会执行。</li>
+<li><strong>返回通知</strong>（<code>@AfterReturning</code>）：目标方法执行成功之后，才会执行返回通知。</li>
+<li><strong>异常通知</strong>（<code>@Afterthrowing</code>）：目标方法执行出现异常，才会执行异常通知。</li>
+<li><strong>环绕通知</strong>（<code>@Around</code>）：能实现以上四种通知的效果。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogAspect</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Pointcut(value = &quot;execution(* com.atguigu.aop.CalculatorImpl.*(..))&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myPointCut</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//前置通知</span></span><br><span class="line">    <span class="meta">@Before(value = &quot;myPointCut()&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeLog</span><span class="params">(JoinPoint joinPoint)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//方法签名：全类名.方法名(参数列表)</span></span><br><span class="line">        <span class="comment">//获取方法名</span></span><br><span class="line">        String methodName = joinPoint.getSignature().getName();</span><br><span class="line">        Object[] args = joinPoint.getArgs();</span><br><span class="line">        System.out.println(<span class="string">&quot;日志切面  前置通知, 目标方法名为：&quot;</span> + methodName + <span class="string">&quot;, 参数值为：&quot;</span> + Arrays.asList(args));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//后置通知</span></span><br><span class="line">    <span class="meta">@After(value = &quot;myPointCut()&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterLog</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;日志切面  后置通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在返回通知中获取目标方法的返回结果，有两点要求：1：返回通知的参数类型最好是Object 2.方法的参数名必须和returning属性值保持一致</span></span><br><span class="line">    <span class="meta">@AfterReturning(value = &quot;myPointCut()&quot;, returning = &quot;result&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturningLog</span><span class="params">(Object result)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;日志切面  返回通知, 返回结果为：&quot;</span> + result);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//在异常通知中获取目标方法的异常信息，有两点要求：1.要求参数的类型必须为Throwing,2要求异常通知的参数名必须和@AfterThrowing注解的throwing属性值保持一致</span></span><br><span class="line">    <span class="meta">@AfterThrowing(value = &quot;myPointCut()&quot;, throwing = &quot;ex&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowingLog</span><span class="params">(Throwable ex)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;日志切面  异常通知, 异常信息为：&quot;</span> + ex.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TransactionAspect</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">      环绕通知：</span></span><br><span class="line"><span class="comment">        1.要求环绕通知标记的方法返回值类型必须为Object类型</span></span><br><span class="line"><span class="comment">        2.要求将目标方法的返回值返回。</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="meta">@Around(value = &quot;com.fengge.advice.LogAspect.myPointCut()&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">around</span><span class="params">(ProceedingJoinPoint joinPoint)</span></span>&#123;</span><br><span class="line">        Object proceed = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">try</span>&#123;</span><br><span class="line">                String methodName = joinPoint.getSignature().getName();</span><br><span class="line">                Object[] args = joinPoint.getArgs();</span><br><span class="line">                System.out.println(<span class="string">&quot;事务切面  前置通知, 目标方法名为：&quot;</span>+methodName+<span class="string">&quot;, 参数值为：&quot;</span>+ Arrays.asList(args));</span><br><span class="line">                <span class="comment">//执行目标方法</span></span><br><span class="line">                proceed = joinPoint.proceed();</span><br><span class="line">            &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">                System.out.println(<span class="string">&quot;事务切面  后置通知&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(<span class="string">&quot;事务切面  返回通知, 返回结果为：&quot;</span>+proceed);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Throwable throwable) &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;事务切面  异常通知, 异常信息为：&quot;</span>+throwable.getMessage());</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(throwable.getMessage());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> proceed;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-2-基于-xml-文件配置的-AOP"><a href="#5-2-基于-xml-文件配置的-AOP" class="headerlink" title="5.2 基于 xml 文件配置的 AOP"></a>5.2 基于 xml 文件配置的 AOP</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id&#x3D;&quot;caculator&quot; class&#x3D;&quot;com.fengge.aop.CaculatorImpl&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;logAspect&quot; class&#x3D;&quot;com.fengge.advice.LogAspect&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line">&lt;bean id&#x3D;&quot;transactionAspect&quot; class&#x3D;&quot;com.fengge.advice.TransactionAspect&quot;&gt;&lt;&#x2F;bean&gt;</span><br><span class="line"></span><br><span class="line">&lt;aop:config&gt;</span><br><span class="line">  &lt;!-- 切入点表达式复用 --&gt;</span><br><span class="line">    &lt;aop:pointcut id&#x3D;&quot;myPointCut&quot; expression&#x3D;&quot;execution(* com.fengge.*(..))&quot;&#x2F;&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!-- 日志切面 --&gt;</span><br><span class="line">    &lt;aop:aspect ref&#x3D;&quot;logAspect&quot; order&#x3D;&quot;10&quot;&gt;</span><br><span class="line">    &lt;!-- 前置通知 --&gt;</span><br><span class="line">    &lt;aop:before method&#x3D;&quot;beforeLog&quot; pointcut-ref&#x3D;&quot;myPointCut&quot;&#x2F;&gt;</span><br><span class="line">    &lt;!-- 后置通知 --&gt;</span><br><span class="line">    &lt;aop:after method&#x3D;&quot;afterLog&quot; pointcut-ref&#x3D;&quot;myPointCut&quot;&#x2F;&gt;</span><br><span class="line">    &lt;!-- 返回通知 --&gt;</span><br><span class="line">    &lt;aop:after-returning method&#x3D;&quot;afterReturningLog&quot; pointcut-ref&#x3D;&quot;myPointCut&quot;</span><br><span class="line">        returning&#x3D;&quot;result&quot;&#x2F;&gt;</span><br><span class="line">    &lt;!-- 异常通知 --&gt;</span><br><span class="line">    &lt;aop:after-throwing method&#x3D;&quot;afterThrowingLog&quot; pointcut-ref&#x3D;&quot;myPointCut&quot;</span><br><span class="line">        throwing&#x3D;&quot;ex&quot;&#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;aop:aspect&gt;</span><br><span class="line">  </span><br><span class="line">  &lt;!-- 事务切面 --&gt;</span><br><span class="line">    &lt;aop:aspect ref&#x3D;&quot;transactionAspect&quot; order&#x3D;&quot;8&quot;&gt;</span><br><span class="line">    &lt;!-- 环绕通知 --&gt;</span><br><span class="line">        &lt;aop:around method&#x3D;&quot;around&quot; pointcut-ref&#x3D;&quot;myPointCut&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;aop:aspect&gt;</span><br><span class="line">  </span><br><span class="line">&lt;&#x2F;aop:config&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-3-通知的底层结构"><a href="#5-3-通知的底层结构" class="headerlink" title="5.3 通知的底层结构"></a>5.3 通知的底层结构</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Spring 4.x 中 advice 的底层结构 </span></span><br><span class="line"><span class="keyword">try</span> &#123; </span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">//前置通知</span></span><br><span class="line">        <span class="comment">//目标方法 </span></span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123; </span><br><span class="line">        <span class="comment">//后置通知 </span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//返回通知 </span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Throwable ex) &#123; </span><br><span class="line">    <span class="comment">//异常通知 </span></span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="comment">// Spring 5.x 中 advice 的底层结构 </span></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">//前置通知</span></span><br><span class="line">    <span class="comment">//目标方法</span></span><br><span class="line">    <span class="comment">//返回通知</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Throwable ex) &#123;</span><br><span class="line">    <span class="comment">//异常通知</span></span><br><span class="line">&#125; fally &#123;</span><br><span class="line">    <span class="comment">//后置通知</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注：可以看到，4.x 和 5.x 的<strong>后置</strong>通知和<strong>返回</strong>通知执行的<strong>前后顺序不一样</strong>。</p>
+<h4 id="5-4-切入点表达式"><a href="#5-4-切入点表达式" class="headerlink" title="5.4 切入点表达式"></a>5.4 切入点表达式</h4><p>作用：用来确定对谁进行拓展的。<br>语法：<code>execution([权限修饰符] [返回值类型] [全类名] 方法名 (参数列表))</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//切入点表达式的复用</span></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span> <span class="comment">//该注解标记的类表示当前类是一个切面类</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LogAspect</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Pointcut(value = &quot;execution(public int com.fengge.aop.CaculatorImpl.*(..))&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">myPointCut</span><span class="params">()</span></span>&#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//前置通知</span></span><br><span class="line">    <span class="meta">@Before(value = &quot;myPointCut()&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeLog</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;日志切面 前置通知&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>切入点表达式支持与、或、非操作：在 AspectJ 中，切入点表达式可以通过 “&amp;&amp;”、“||”、“!”等操作符结合起来。表达式：<code>execution (.add(int,..)) || execution (.sub(int, ..))</code><br>含义：任意类中第一个参数为 int 类型的 add 方法或 sub 方法。</p>
+<h4 id="5-5-从通知中获取目标方法的信息"><a href="#5-5-从通知中获取目标方法的信息" class="headerlink" title="5.5 从通知中获取目标方法的信息"></a>5.5 从通知中获取目标方法的信息</h4><ol>
+<li>前置通知：获取目标方法名和目标方法的参数值信息</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//前置通知</span></span><br><span class="line"><span class="meta">@Before(value = &quot;myPointCut()&quot;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforeLog</span><span class="params">(JoinPoint joinPoint)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//方法签名：全类名.方法名(参数列表)</span></span><br><span class="line">    String methodName = joinPoint.getSignature().getName(); <span class="comment">//获取目标方法名</span></span><br><span class="line">    Object[] args = joinPoint.getArgs(); <span class="comment">//获取目标方法的参数值信息</span></span><br><span class="line">    System.out.println(<span class="string">&quot;[log]目标方法名:&quot;</span> +methodName+ <span class="string">&quot;, 参数值:&quot;</span> + Arrays.asList(args));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>返回通知：获取目标方法的返回结果 </li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回通知,有两点要求</span></span><br><span class="line"><span class="comment">//1.返回通知的参数类型最好是 Object </span></span><br><span class="line"><span class="comment">//2.方法的参数名必须和 returning 属性值保持一致</span></span><br><span class="line"><span class="meta">@AfterReturning(value = &quot;myPointCut()&quot;, returning = &quot;result&quot;)</span> <span class="comment">//获取目标方法的返回结果 </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturningLog</span><span class="params">(Object result)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;[日志切面] 返回通知, 返回结果为：&quot;</span> + result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>异常通知：获取目标方法的异常信息 </li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在异常通知中获取目标方法的异常信息,有两点要求</span></span><br><span class="line"><span class="comment">//1.要求参数的类型必须为Throwing</span></span><br><span class="line"><span class="comment">//2.要求异常通知的参数名必须和 @AfterThrowing 注解的 throwing 属性值保持一致</span></span><br><span class="line"><span class="meta">@AfterThrowing(value = &quot;myPointCut()&quot;, throwing = &quot;ex&quot;)</span> <span class="comment">//获取目标方法的异常信息 </span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowingLog</span><span class="params">(Throwable ex)</span> </span>&#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;[日志切面] 异常通知, 异常信息为：&quot;</span> + ex.getMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-6-多切面情况下，不同切面及其通知执行顺序问题（-三种情况）"><a href="#5-6-多切面情况下，不同切面及其通知执行顺序问题（-三种情况）" class="headerlink" title="5.6 多切面情况下，不同切面及其通知执行顺序问题（ 三种情况）"></a>5.6 多切面情况下，不同切面及其通知执行顺序问题（ 三种情况）</h4><p>第一种情况：当目标方法不出异常的时候 。</p>
+<p>第二种情况：当目标方法出异常的时候，内层切面不抛出异常 。</p>
+<p>第三种情况：当目标方法出异常的时候，内层切面抛出异常 。</p>
+<p>多切面情况下，切面的执行顺序是由标记在切面类上的<code>@Order</code>决定的，<code>@Order</code>注解的<code>value</code>属性值越小，切面的执行优先级越高。  </p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2017/05/31/Spring%E4%B8%AD%E7%9A%84AOP/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/05/29/Spring%E4%B8%AD%E7%9A%84IOC%E8%A1%A5%E5%85%85/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring中的IOC补充</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -253,8 +441,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
