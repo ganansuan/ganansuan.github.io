@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | 小站</title>
+  <title>静态代理和动态代理的补充 | 小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小站">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="静态代理和动态代理的补充1.静态代理:指的是只能代理某一个接口的实现类对象Payment: 123public interface Payment&amp;#123;	public void pay(double money);&amp;#125;  真实用户 RealPayment: 123456public class RealPayment implements Payment&amp;#123;	@Overrid">
+<meta property="og:type" content="article">
+<meta property="og:title" content="静态代理和动态代理的补充">
+<meta property="og:url" content="http://example.com/2017/06/01/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E8%A1%A5%E5%85%85/index.html">
 <meta property="og:site_name" content="小站">
+<meta property="og:description" content="静态代理和动态代理的补充1.静态代理:指的是只能代理某一个接口的实现类对象Payment: 123public interface Payment&amp;#123;	public void pay(double money);&amp;#125;  真实用户 RealPayment: 123456public class RealPayment implements Payment&amp;#123;	@Overrid">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2017-06-01T10:37:07.000Z">
+<meta property="article:modified_time" content="2021-06-02T13:29:05.412Z">
 <meta property="article:author" content="凤歌">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -161,292 +165,185 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-静态代理和动态代理的补充" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/02/SpringMVC%E5%85%A5%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2017-06-02T12:49:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/02/SpringMVC%E5%85%A5%E9%97%A8/">SpringMVC入门</a>
+    <h1 class="article-title" itemprop="name">
+      静态代理和动态代理的补充
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/01/spring%E9%9D%A2%E8%AF%95%E7%82%B9/" class="archive-article-date">
-  	<time datetime="2017-06-01T12:46:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/01/spring%E9%9D%A2%E8%AF%95%E7%82%B9/">spring面试点</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/01/Spring%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/" class="archive-article-date">
-  	<time datetime="2017-06-01T12:07:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/01/Spring%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/">Spring中的事务</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/01/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E8%A1%A5%E5%85%85/" class="archive-article-date">
+        
+        <a href="/2017/06/01/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E8%A1%A5%E5%85%85/" class="archive-article-date">
   	<time datetime="2017-06-01T10:37:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/01/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E8%A1%A5%E5%85%85/">静态代理和动态代理的补充</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="静态代理和动态代理的补充"><a href="#静态代理和动态代理的补充" class="headerlink" title="静态代理和动态代理的补充"></a>静态代理和动态代理的补充</h1><h2 id="1-静态代理-指的是只能代理某一个接口的实现类对象"><a href="#1-静态代理-指的是只能代理某一个接口的实现类对象" class="headerlink" title="1.静态代理:指的是只能代理某一个接口的实现类对象"></a>1.静态代理:指的是只能代理某一个接口的实现类对象</h2><p>Payment:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Payment</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pay</span><span class="params">(<span class="keyword">double</span> money)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>真实用户 RealPayment:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RealPayment</span> <span class="keyword">implements</span> <span class="title">Payment</span></span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function">publice <span class="keyword">void</span> <span class="title">pay</span><span class="params">(<span class="keyword">double</span> money)</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;作为真实用户,我们只关注付了&quot;</span>+money+<span class="string">&quot;钱&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<p>支付宝代理:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AliPay</span> <span class="keyword">implements</span> <span class="title">Payment</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> Payment payment;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">AliPay</span><span class="params">(Payment payment)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.payment = payment;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">beforePayment</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;支付宝代理真实用户把钱从银行取出来...&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pay</span><span class="params">(<span class="keyword">double</span> money)</span></span>&#123;</span><br><span class="line">		beforePay();</span><br><span class="line">		<span class="keyword">this</span>.payment.pay(money);</span><br><span class="line">		afterPay();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterPay</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">&quot;支付宝代理真实用户把钱付给商家...&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试类:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testPay</span><span class="params">()</span></span>&#123;</span><br><span class="line">	AliPay aliPay = <span class="keyword">new</span> AliPay(<span class="keyword">new</span> RealPayment());</span><br><span class="line">	aliPay.pay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>静态代理只能代理某个特定接口的实现类对象.</strong></p>
+<h2 id="2-动态代理-指能代理任意接口的实现类对象"><a href="#2-动态代理-指能代理任意接口的实现类对象" class="headerlink" title="2.动态代理:指能代理任意接口的实现类对象"></a>2.动态代理:指能代理任意接口的实现类对象</h2><p>测试类:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test02</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="comment">//RealPayment realPayment = new RealPayment();</span></span><br><span class="line">	WeiPayment weiPay = <span class="keyword">new</span> WeiPayImpl();</span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	用jdk中java.lang.reflect.Proxy的newProxyInstance方法:</span></span><br><span class="line"><span class="comment">	ClassLoader loader: 被代理类的类加载器</span></span><br><span class="line"><span class="comment">	Class&lt;?&gt;[] interfaces: 被代理类实现的接口</span></span><br><span class="line"><span class="comment">	InvocationHandler h: InvocationHandler接口的实现类对象,在该接口的实现类中对被代理类进行拓展</span></span><br><span class="line"><span class="comment">	这里直接改良为万能动态代理,所以将此步用泛型放入MyInvocationHandler类中</span></span><br><span class="line"><span class="comment">	**/</span></span><br><span class="line">	MyInvocationHandler&lt;WeiPay&gt; result = <span class="keyword">new</span> MyInvocationHandler&lt;WeiPay&gt;(weiPay);</span><br><span class="line">	WeiPay proxy = <span class="function">result <span class="title">proxy</span><span class="params">()</span></span>;</span><br><span class="line">	proxy.pay(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>InvocationHandler实现类:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyInvocationHandler</span>&lt;<span class="title">T</span>&gt; <span class="keyword">implements</span> <span class="title">InvocationHandler</span></span>&#123;</span><br><span class="line">	<span class="keyword">private</span> T target;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">MyInvocationHandler</span><span class="params">(T target)</span></span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.target = target;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> T <span class="title">proxy</span><span class="params">()</span></span>&#123;</span><br><span class="line">		T o = (T) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), <span class="keyword">this</span>);</span><br><span class="line">		<span class="keyword">return</span> o;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2017/06/01/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E8%A1%A5%E5%85%85/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/31/Spring%E4%B8%AD%E7%9A%84AOP/" class="archive-article-date">
-  	<time datetime="2017-05-31T10:30:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-31</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/06/01/Spring%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Spring中的事务
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/05/31/Spring%E4%B8%AD%E7%9A%84AOP/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Spring中的AOP</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/31/Spring%E4%B8%AD%E7%9A%84AOP/">Spring中的AOP</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/29/Spring%E4%B8%AD%E7%9A%84IOC%E8%A1%A5%E5%85%85/" class="archive-article-date">
-  	<time datetime="2017-05-29T10:24:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/29/Spring%E4%B8%AD%E7%9A%84IOC%E8%A1%A5%E5%85%85/">Spring中的IOC补充</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/28/Spring%E4%B8%AD%E7%9A%84IOC/" class="archive-article-date">
-  	<time datetime="2017-05-28T12:29:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/28/Spring%E4%B8%AD%E7%9A%84IOC/">Spring中的IOC</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/28/%E5%88%9D%E8%AF%86spring/" class="archive-article-date">
-  	<time datetime="2017-05-28T10:20:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/28/%E5%88%9D%E8%AF%86spring/">初识spring</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/28/%E4%B8%80%E4%BA%9B%E5%8F%AF%E8%83%BD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2017-05-28T08:53:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/28/%E4%B8%80%E4%BA%9B%E5%8F%AF%E8%83%BD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">一些可能碰到的问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/28/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAhexo%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-  	<time datetime="2017-05-28T07:35:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/28/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E4%B8%80%E4%B8%AAhexo%E5%8D%9A%E5%AE%A2/">从零开始搭建一个hexo博客</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -469,8 +366,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
