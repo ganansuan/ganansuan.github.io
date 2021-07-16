@@ -6,16 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | 小站</title>
+  <title>Spring中的事务 | 小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小站">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="Spring中的事务1.JdbcTemplateSpring的JdbcTemplate实际上就是Spring框架对原生JDBC的简单封装装，类似于 Javaweb 部分学过 DbUtils 工具类，主要是对数据表的数据进行增删改查操作。 具体使用：  导包core container:5aop:1mysql-connectorDruidspring-txspring-ormspring-jdbc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring中的事务">
+<meta property="og:url" content="http://example.com/2019/06/01/Spring%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/index.html">
 <meta property="og:site_name" content="小站">
+<meta property="og:description" content="Spring中的事务1.JdbcTemplateSpring的JdbcTemplate实际上就是Spring框架对原生JDBC的简单封装装，类似于 Javaweb 部分学过 DbUtils 工具类，主要是对数据表的数据进行增删改查操作。 具体使用：  导包core container:5aop:1mysql-connectorDruidspring-txspring-ormspring-jdbc">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2019/06/01/Spring%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/%E5%9B%9E%E6%BB%9A%E5%B1%9E%E6%80%A7.png">
+<meta property="article:published_time" content="2019-06-01T12:07:48.000Z">
+<meta property="article:modified_time" content="2021-07-16T03:16:38.985Z">
 <meta property="article:author" content="凤歌">
-<meta property="article:tag" content="java">
+<meta property="article:tag" content="spring">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2019/06/01/Spring%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/%E5%9B%9E%E6%BB%9A%E5%B1%9E%E6%80%A7.png">
   
     <link rel="alternative" href="/atom.xml" title="小站" type="application/atom+xml">
   
@@ -161,321 +167,239 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Spring中的事务" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Spring中的事务
+    </h1>
+  
+
+        
+        <a href="/2019/06/01/Spring%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/" class="archive-article-date">
+  	<time datetime="2019-06-01T12:07:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-01</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Spring中的事务"><a href="#Spring中的事务" class="headerlink" title="Spring中的事务"></a>Spring中的事务</h1><h2 id="1-JdbcTemplate"><a href="#1-JdbcTemplate" class="headerlink" title="1.JdbcTemplate"></a>1.JdbcTemplate</h2><p>Spring的JdbcTemplate实际上就是Spring框架对原生JDBC的简单封装装，类似于 Javaweb 部分学过 DbUtils 工具类，主要是对数据表的数据进行增删改查操作。 具体使用：</p>
+<ol>
+<li><p>导包<br>core container:5<br>aop:1<br>mysql-connector<br>Druid<br>spring-tx<br>spring-orm<br>spring-jdbc</p>
+</li>
+<li><p>在spring的配置文件配置JdbcTemplate</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 1.加载properties文件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context:property-placeholder</span> <span class="attr">location</span>=<span class="string">&quot;classpath:jdbc.properties&quot;</span>/&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 2.配置数据源信息 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">class</span>=<span class="string">&quot;com.alibaba.druid.pool.DruidDataSource&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">destroy-method</span>=<span class="string">&quot;close&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;username&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;jdbc.userName&#125;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;password&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;jdbc.password&#125;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;driverClassName&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;jdbc.driverClass&#125;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;url&quot;</span> <span class="attr">value</span>=<span class="string">&quot;$&#123;jdbc.jdbcUrl&#125;&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">class</span>=<span class="string">&quot;org.springframework.jdbc.core.JdbcTemplate&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
+<li><p>在 dao 层使用 JdbcTemplate</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Repository</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EmployeeDao</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> JdbcTemplate jdbcTemplate;</span><br><span class="line"><span class="comment">/************************************************************</span></span><br><span class="line"><span class="comment">JdbcTemplate的使用：</span></span><br><span class="line"><span class="comment">增删改操作：update()方法</span></span><br><span class="line"><span class="comment">************************************************************/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insert</span><span class="params">()</span></span>&#123;</span><br><span class="line">	String sql=<span class="string">&quot;insert into employee values(null,?,?)&quot;</span>;</span><br><span class="line">	jdbcTemplate.update(sql,<span class="string">&quot;凤歌&quot;</span>,<span class="number">23000</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">JdbcTemplate的使用：</span><br><span class="line">    增删改操作：update()方法</span><br><span class="line">    批量增删改：batchUpdate()方法</span><br><span class="line">    查询操作：</span><br><span class="line">        1.查询一个pojo对象:queryForObject()</span><br><span class="line">        	要用到一个叫org.springframework.jdbc.core.RowMapper的接口</span><br><span class="line">        	RowMapper&lt;返回的pojo对象的类型&gt; rowMappeer &#x3D; new BeanPropertyRowMapper(返回的pojo对象的字节码);</span><br><span class="line">        2.查询一个单值：queryForObject()</span><br><span class="line">        3.查询一个对象列表:query()方法</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-编程式事务"><a href="#2-编程式事务" class="headerlink" title="2.编程式事务"></a>2.编程式事务</h2><p>事务的使用场景：当在一个功能单元[方法]中涉及到对数据库的多次增删改操作，要求这 多次增删改操作要么同时成功，要么同时失败，这时候才会使用事务。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Connection conn= JdbcUtils.getConnection();</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    conn.setAutoCommit(<span class="keyword">false</span>); 	<span class="comment">//取消事务的自动提交</span></span><br><span class="line">                                <span class="comment">//多次增删改操作</span></span><br><span class="line">	conn.commit(); <span class="comment">//提交事务</span></span><br><span class="line">    &#125;<span class="keyword">catch</span>(Exception ex)&#123;</span><br><span class="line">conn.rollback(); <span class="comment">//回滚事务</span></span><br><span class="line">    &#125;<span class="keyword">finally</span>&#123;</span><br><span class="line">conn.close() <span class="comment">//释放连接</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>事务的四大特性： </p>
+<p>ACID:<br>A：Atom:原子性<br>C：Consistency:一致性<br>I：Isolation:隔离性<br>D：Duration:持久性</p>
+<h2 id="3-声明式事务"><a href="#3-声明式事务" class="headerlink" title="3.声明式事务"></a>3.声明式事务</h2><h3 id="3-1-事务准备"><a href="#3-1-事务准备" class="headerlink" title="3.1 事务准备"></a>3.1 事务准备</h3><p>需求:买书需求</p>
+<h3 id="3-2-基于注解的声明式事务"><a href="#3-2-基于注解的声明式事务" class="headerlink" title="3.2 基于注解的声明式事务"></a>3.2 基于注解的声明式事务</h3><p>第一步：导入 jar 包</p>
+<p>第二步：在 spring 的配置文件中配置数据源事务管理器，开启基于注解的事务支持</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 配置数据源事务管理器 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">&quot;transactionManager&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">class</span>=<span class="string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">property</span> <span class="attr">name</span>=<span class="string">&quot;dataSource&quot;</span> <span class="attr">ref</span>=<span class="string">&quot;dataSource&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 开启基于注解的事务支持 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tx:annotation-driven</span> <span class="attr">transaction-manager</span>=<span class="string">&quot;transactionManager&quot;</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>第三步：在 service 层的方法上加@Transactional 注解</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookService</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> BookDao bookDao;</span><br><span class="line">    <span class="comment">//购买图书</span></span><br><span class="line">    <span class="meta">@Transactional</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">buyBook</span><span class="params">(String username,String isbn)</span></span>&#123;</span><br><span class="line">        <span class="keyword">double</span> price = bookDao.getPriceByIsbn(isbn);</span><br><span class="line">        bookDao.updateBookStockByIsbn(isbn);</span><br><span class="line">        bookDao.updateBalance(username,price);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-声明式事务的五大属性"><a href="#4-声明式事务的五大属性" class="headerlink" title="4.声明式事务的五大属性"></a>4.声明式事务的五大属性</h3><h4 id="4-1-传播机制-propagation"><a href="#4-1-传播机制-propagation" class="headerlink" title="4.1 传播机制[propagation]"></a>4.1 传播机制[propagation]</h4><p>一个带有事务的方法 A 运行在另一个带有事务的方法 B 的内部的时候，内层方法 A 是使用 自己的事务，还是使用外层方法 B 的事务，这就是事务的传播机制。 propagation 常用取值：Required、Requires_new、supports</p>
+<p>Required[默认值]：表示外层方法 B 有事务，内层方法 A 就使用外层方法 B 的事务。 表示外层方法 B 没有事务，内层方法 A 就使用自己的事务。<br>Requires_new:表示无论外层方法 B 有没有事务，内层方法 A 都是用自己的事务。<br>supports: 表示外层方法 B 有事务，内层方法 A 就使用外层方法 B 的事务。 表示外层方法 B 没有事务，内层方法 A 就不用事务。</p>
+<h4 id="4-2-隔离级别-isolation"><a href="#4-2-隔离级别-isolation" class="headerlink" title="4.2 隔离级别[isolation]"></a>4.2 隔离级别[isolation]</h4><p>针对并发访问的 </p>
+<p>mysql 默认的隔离级别为:repeatable-read:可重复读<br>        oracle 默认的隔离级别为：read_commited:读已提交</p>
+<h4 id="4-3-回滚属性-rollbackFor"><a href="#4-3-回滚属性-rollbackFor" class="headerlink" title="4.3 回滚属性[rollbackFor]"></a>4.3 回滚属性[rollbackFor]</h4><p>声明式事务默认只会在遇到运行时异常的时候才会回滚!</p>
+<img src="/2019/06/01/Spring%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/%E5%9B%9E%E6%BB%9A%E5%B1%9E%E6%80%A7.png" class title="回滚属性">
+
+<p>注意：<br>Spring 在底层把 SQLException 已经转换为 RuntimeException<br>Spring 框架并没有将 IOException 转换为 RuntimeException</p>
+<p>rollbackFor=””:针对非运行时异常<br>noRollbackFor:针对运行时异常</p>
+<h4 id="4-4-超时属性-timeout"><a href="#4-4-超时属性-timeout" class="headerlink" title="4.4 超时属性[timeout]"></a>4.4 超时属性[timeout]</h4><p>事务执行过程中，势必会占用着数据库资源，如果一个事务执行的时间过长，就会影响其他 事务的执行，所以为了防止一个事务长时间的占用着数据库资源，一般要给事务设置一个超 时属性 timeout,一旦事务在指定的时间内还没有完成这个操作，可以让事务回滚，释放 数据库资源。</p>
+<p>注意：超时时间是指的多次操作数据库之间的总时间。</p>
+<h4 id="4-5-只读属性-readonly"><a href="#4-5-只读属性-readonly" class="headerlink" title="4.5 只读属性[readonly]"></a>4.5 只读属性[readonly]</h4><p>只读属性是为了加快查询效率而设置的，如果设置了 readonly=true,就表示当前方法内 部只涉及到对数据库的读取操作，而没有增删改操作，数据库底层会采用共享锁。</p>
+<h3 id="5-基于-xml-配置的声明式事务"><a href="#5-基于-xml-配置的声明式事务" class="headerlink" title="5.基于 xml 配置的声明式事务"></a>5.基于 xml 配置的声明式事务</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">aop:config</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 1.配置切入点表达式 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:pointcut</span> <span class="attr">id</span>=<span class="string">&quot;myPointCut&quot;</span> </span></span><br><span class="line"><span class="tag">        <span class="attr">expression</span>=<span class="string">&quot;execution(*com.fengge.service.BookService.*(..))&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 1.将切入点表达式联系起来--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">aop:advisor</span> <span class="attr">advice-ref</span>=<span class="string">&quot;dsds&quot;</span> <span class="attr">pointcut-ref</span>=<span class="string">&quot;myPointCut&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">aop:config</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--事务 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">tx:advice</span> <span class="attr">id</span>=<span class="string">&quot;dsds&quot;</span> <span class="attr">transaction-manager</span>=<span class="string">&quot;transactionManager&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">&quot;buyBook&quot;</span> <span class="attr">read-only</span>=<span class="string">&quot;false&quot;</span> <span class="attr">timeout</span>=<span class="string">&quot;3&quot;</span> <span class="attr">propagation</span>=<span class="string">&quot;REQUIRED&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">isolation</span>=<span class="string">&quot;REPEATABLE_READ&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">&quot;query*&quot;</span> <span class="attr">read-only</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">&quot;get*&quot;</span> <span class="attr">read-only</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">tx:method</span> <span class="attr">name</span>=<span class="string">&quot;find*&quot;</span> <span class="attr">read-only</span>=<span class="string">&quot;true&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">tx:attributes</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">tx:advice</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="6-其它知识点"><a href="#6-其它知识点" class="headerlink" title="6.其它知识点"></a>6.其它知识点</h3><h4 id="6-1-几个常用注解"><a href="#6-1-几个常用注解" class="headerlink" title="6.1 几个常用注解"></a>6.1 几个常用注解</h4><h5 id="6-1-1-Spring-测试模块"><a href="#6-1-1-Spring-测试模块" class="headerlink" title="6.1.1 Spring 测试模块"></a>6.1.1 Spring 测试模块</h5><p>Spring 的测试模块还是基于 junit 的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">具体使用：</span><br><span class="line">第一步：导入spring-test.jar</span><br><span class="line">第二步：在测试类上<span class="meta">@RunWith(SpringJunit4ClassRunner.class)</span></span><br><span class="line"><span class="meta">@ContextConfiguration(&quot;classpath:applicationContext.xml&quot;)</span></span><br><span class="line"><span class="meta">@RunWith(SpringJUnit4ClassRunner.class)</span></span><br><span class="line"><span class="meta">@ContextConfiguration(&quot;classpath:applicationContext.xml&quot;)</span><span class="comment">//相当于new</span></span><br><span class="line">ClassPathXmlApplicationContext(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BookServiceTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> BookService bookService;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testBuyBook</span><span class="params">()</span> <span class="keyword">throws</span> FileNotFoundException, InterruptedException</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">//ApplicationContext context = new</span></span><br><span class="line">        ClassPathXmlApplicationContext(<span class="string">&quot;applicationContext.xml&quot;</span>);</span><br><span class="line">        <span class="comment">//BookService bean = context.getBean(BookService.class);</span></span><br><span class="line">        bookService.buyBook(<span class="string">&quot;Tom&quot;</span>, <span class="string">&quot;ISBN-001&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-1-2-Configuration"><a href="#6-1-2-Configuration" class="headerlink" title="6.1.2 @Configuration"></a>6.1.2 @Configuration</h5><p>标记在类上，表示当前类是一个配置类[容器类],用来取代 spring 的配置文件的。</p>
+<h5 id="6-1-3-Bean"><a href="#6-1-3-Bean" class="headerlink" title="6.1.3 @Bean"></a>6.1.3 @Bean</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span> <span class="comment">//加了@Configuration的类就是配置类[容器类],相当于</span></span><br><span class="line">applicationContext.xml,主要作用创建bean对象</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean(name = &quot;sds&quot;)</span><span class="comment">//相当于&lt;bean id=&quot;&quot; class=&quot;&quot;&gt;:方法返回值相当于class属性, 方法名就相当于id值</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Book <span class="title">getBook</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Book book = <span class="keyword">new</span> Book();</span><br><span class="line">        book.setBookName(<span class="string">&quot;干法&quot;</span>);</span><br><span class="line">        book.setPrice(<span class="number">33.3</span>);</span><br><span class="line">        book.setIsbn(<span class="string">&quot;ISBN-001&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> book;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>测试类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ApplicationContext context= <span class="keyword">new</span></span><br><span class="line">    AnnotationConfigApplicationContext(GlobalConfig.class);</span><br><span class="line">    Object bean = context.getBean(<span class="string">&quot;sds&quot;</span>);</span><br><span class="line">    System.out.println(bean);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-1-4-ComponentScan-注解"><a href="#6-1-4-ComponentScan-注解" class="headerlink" title="6.1.4 @ComponentScan 注解"></a>6.1.4 @ComponentScan 注解</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span> <span class="comment">//加了@Configuration的类就是配置类[容器类],相当于applicationContext.xml,主要作用创建bean对象</span></span><br><span class="line"><span class="meta">@ComponentScan(value = &#123;&quot;com.atguigu.service&quot;,&quot;com.atguigu.dao&quot;&#125;)</span><span class="comment">//代替</span></span><br><span class="line">applicationContext.xml文件中&lt;context:component-scan&gt;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalConfig</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Bean(name = &quot;sds&quot;)</span><span class="comment">//相当于&lt;bean id=&quot;&quot; class=&quot;&quot;&gt;:方法返回值相当于class属性, 方法名就相当于id值</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Book <span class="title">getBook</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Book book = <span class="keyword">new</span> Book();</span><br><span class="line">        book.setBookName(<span class="string">&quot;干法&quot;</span>);</span><br><span class="line">        book.setPrice(<span class="number">33.3</span>);</span><br><span class="line">        book.setIsbn(<span class="string">&quot;ISBN-001&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> book;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> DataSource <span class="title">druidDataSource</span><span class="params">()</span></span>&#123;</span><br><span class="line">        DruidDataSource dataSource = <span class="keyword">new</span> DruidDataSource();</span><br><span class="line">        dataSource.setUsername(<span class="string">&quot;root&quot;</span>);</span><br><span class="line">        dataSource.setPassword(<span class="string">&quot;root&quot;</span>);</span><br><span class="line">        dataSource.setDriverClassName(<span class="string">&quot;com.mysql.jdbc.Driver&quot;</span>);</span><br><span class="line">        dataSource.setUrl(<span class="string">&quot;jdbc:mysql://localhost:3306/tx?rewriteBatchedStatements=true&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> dataSource;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> JdbcTemplate <span class="title">jdbcTemplate</span><span class="params">(DataSource dataSource)</span></span>&#123;</span><br><span class="line">        JdbcTemplate jdbcTemplate = <span class="keyword">new</span> JdbcTemplate();</span><br><span class="line">        jdbcTemplate.setDataSource(dataSource);</span><br><span class="line">        <span class="keyword">return</span> jdbcTemplate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-1-5-Import-注解与-ImportResource-注解"><a href="#6-1-5-Import-注解与-ImportResource-注解" class="headerlink" title="6.1.5 @Import 注解与@ImportResource 注解"></a>6.1.5 @Import 注解与@ImportResource 注解</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span> <span class="comment">//加了@Configuration的类就是配置类[容器类],相当于applicationContext.xml,主要作用创建bean对象</span></span><br><span class="line"><span class="meta">@ComponentScan(value = &#123;&quot;com.atguigu.service&quot;,&quot;com.atguigu.dao&quot;&#125;)</span><span class="comment">//代替applicationContext.xml文件中&lt;context:component-scan&gt;</span></span><br><span class="line"><span class="comment">//@Import(RandomConfig.class)</span></span><br><span class="line"><span class="meta">@ImportResource(&quot;classpath:applicationContext.xml&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GlobalConfig</span> </span>&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-1-6-EnableAspectJAutoProxy"><a href="#6-1-6-EnableAspectJAutoProxy" class="headerlink" title="6.1.6 @EnableAspectJAutoProxy"></a>6.1.6 @EnableAspectJAutoProxy</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//相当于<span class="tag">&lt;<span class="name">aop:aspectj-autoproxy</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="6-1-7-EnableTransactionManagement"><a href="#6-1-7-EnableTransactionManagement" class="headerlink" title="6.1.7 @EnableTransactionManagement"></a>6.1.7 @EnableTransactionManagement</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//相当于<span class="tag">&lt;<span class="name">tx:annotation-driven</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-让-tomcat-管理-spring-的配置文件或者配置类"><a href="#6-2-让-tomcat-管理-spring-的配置文件或者配置类" class="headerlink" title="6.2 让 tomcat 管理 spring 的配置文件或者配置类"></a>6.2 让 tomcat 管理 spring 的配置文件或者配置类</h4><ol>
+<li>让 tomcat 加载 spring 的配置文件|配置类生成上下文对象 </li>
+<li>放在 application 域</li>
+</ol>
+<p>加载配置文件： 第一步：导入 web 包 第二步:在 web.xml 文件中配置 ContextLoaderListener：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>org.springframework.web.context.ContextLoaderListener&lt;/listener</span><br><span class="line">    -class&gt;</span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">context-param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-name</span>&gt;</span>contextConfigLocation<span class="tag">&lt;/<span class="name">param-name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">param-value</span>&gt;</span>classpath:applicationContext.xml<span class="tag">&lt;/<span class="name">param-value</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">context-param</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如何加载配置类：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyWebApplicationInitializer</span> <span class="keyword">implements</span> <span class="title">WebApplicationInitializer</span> </span>&#123;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onStartup</span><span class="params">(ServletContext servletContext)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">        <span class="comment">// Load Spring web application configuration</span></span><br><span class="line">        AnnotationConfigWebApplicationContext context = <span class="keyword">new</span></span><br><span class="line">        AnnotationConfigWebApplicationContext();</span><br><span class="line">        context.register(GlobalConfig.class);</span><br><span class="line">        context.refresh();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/09/%E9%81%87%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF%E5%90%88%E9%9B%86/" class="archive-article-date">
-  	<time datetime="2019-07-09T10:39:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/09/%E9%81%87%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF%E5%90%88%E9%9B%86/">遇到的错误合集</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/29/%E7%BE%8E%E5%B9%B4%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2019-06-29T00:43:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/29/%E7%BE%8E%E5%B9%B4%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B/">美年项目流程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/23/%E9%85%8D%E7%BD%AE%E6%A8%A1%E6%9D%BF/" class="archive-article-date">
-  	<time datetime="2019-06-23T13:15:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/23/%E9%85%8D%E7%BD%AE%E6%A8%A1%E6%9D%BF/">配置模板</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/22/linux%E5%92%8Credis%E4%BB%A5%E5%8F%8Adubbo%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2019-06-22T11:45:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/22/linux%E5%92%8Credis%E4%BB%A5%E5%8F%8Adubbo%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">linux和redis以及dubbo的一些问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/08/log4j%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2019-06-08T13:26:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/08/log4j%E4%BD%BF%E7%94%A8/">log4j使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/08/MyBatis-%E7%9A%84%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-%E4%B8%8D%E9%87%8D%E8%A6%81/" class="archive-article-date">
-  	<time datetime="2019-06-08T12:30:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/08/MyBatis-%E7%9A%84%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-%E4%B8%8D%E9%87%8D%E8%A6%81/">MyBatis 的全局配置文件[不重要]</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/08/mybatis%E5%8F%A6%E4%B8%80%E7%A7%8D%E7%94%A8%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2019-06-08T11:24:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/08/mybatis%E5%8F%A6%E4%B8%80%E7%A7%8D%E7%94%A8%E6%B3%95/">mybatis另一种用法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/07/Mybatis%E5%85%A5%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2019-06-07T12:50:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/07/Mybatis%E5%85%A5%E9%97%A8/">Mybatis入门</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/04/SpringMVC%E7%9A%84%E8%A1%A5%E5%85%85-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2019-06-04T10:50:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/04/SpringMVC%E7%9A%84%E8%A1%A5%E5%85%85-%E4%B8%80/">Springmvc的补充(一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">springmvc</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">非常重要</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2019/06/01/Spring%E4%B8%AD%E7%9A%84%E4%BA%8B%E5%8A%A1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/02/SpringMVC%E5%85%A5%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2019-06-02T12:49:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-02</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/06/01/spring%E9%9D%A2%E8%AF%95%E7%82%B9/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          spring面试点
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/01/%E9%9D%99%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8C%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E8%A1%A5%E5%85%85/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">静态代理和动态代理的补充</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/02/SpringMVC%E5%85%A5%E9%97%A8/">SpringMVC入门</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">springmvc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
+  
+
   
 
 
@@ -499,8 +423,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

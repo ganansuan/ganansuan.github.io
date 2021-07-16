@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | 小站</title>
+  <title>mybatis另一种用法 | 小站</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="小站">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="Mybatis另一种用法1.导jar包 2.根据mybatis全局配置文件获取SqlSessionFactory对象 3.通过SqlSessionFactory获取SqlSession对象 3.提供一个xxxMapper接口,写dao方法 BookMapper.java 1public List&lt;Book&gt; getBookList();  写一个sql映射文件 BookMapper.x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mybatis另一种用法">
+<meta property="og:url" content="http://example.com/2019/06/08/mybatis%E5%8F%A6%E4%B8%80%E7%A7%8D%E7%94%A8%E6%B3%95/index.html">
 <meta property="og:site_name" content="小站">
+<meta property="og:description" content="Mybatis另一种用法1.导jar包 2.根据mybatis全局配置文件获取SqlSessionFactory对象 3.通过SqlSessionFactory获取SqlSession对象 3.提供一个xxxMapper接口,写dao方法 BookMapper.java 1public List&lt;Book&gt; getBookList();  写一个sql映射文件 BookMapper.x">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2019-06-08T11:24:31.000Z">
+<meta property="article:modified_time" content="2021-07-16T03:16:28.297Z">
 <meta property="article:author" content="凤歌">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
@@ -161,321 +165,206 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-mybatis另一种用法" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/09/%E9%81%87%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF%E5%90%88%E9%9B%86/" class="archive-article-date">
-  	<time datetime="2019-07-09T10:39:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/09/%E9%81%87%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF%E5%90%88%E9%9B%86/">遇到的错误合集</a>
+    <h1 class="article-title" itemprop="name">
+      mybatis另一种用法
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/29/%E7%BE%8E%E5%B9%B4%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B/" class="archive-article-date">
-  	<time datetime="2019-06-29T00:43:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/29/%E7%BE%8E%E5%B9%B4%E9%A1%B9%E7%9B%AE%E6%B5%81%E7%A8%8B/">美年项目流程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/23/%E9%85%8D%E7%BD%AE%E6%A8%A1%E6%9D%BF/" class="archive-article-date">
-  	<time datetime="2019-06-23T13:15:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-23</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/23/%E9%85%8D%E7%BD%AE%E6%A8%A1%E6%9D%BF/">配置模板</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/22/linux%E5%92%8Credis%E4%BB%A5%E5%8F%8Adubbo%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  	<time datetime="2019-06-22T11:45:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/22/linux%E5%92%8Credis%E4%BB%A5%E5%8F%8Adubbo%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">linux和redis以及dubbo的一些问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/08/log4j%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  	<time datetime="2019-06-08T13:26:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/08/log4j%E4%BD%BF%E7%94%A8/">log4j使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/08/MyBatis-%E7%9A%84%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-%E4%B8%8D%E9%87%8D%E8%A6%81/" class="archive-article-date">
-  	<time datetime="2019-06-08T12:30:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-08</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/08/MyBatis-%E7%9A%84%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-%E4%B8%8D%E9%87%8D%E8%A6%81/">MyBatis 的全局配置文件[不重要]</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/08/mybatis%E5%8F%A6%E4%B8%80%E7%A7%8D%E7%94%A8%E6%B3%95/" class="archive-article-date">
+        
+        <a href="/2019/06/08/mybatis%E5%8F%A6%E4%B8%80%E7%A7%8D%E7%94%A8%E6%B3%95/" class="archive-article-date">
   	<time datetime="2019-06-08T11:24:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-08</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/08/mybatis%E5%8F%A6%E4%B8%80%E7%A7%8D%E7%94%A8%E6%B3%95/">mybatis另一种用法</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Mybatis另一种用法"><a href="#Mybatis另一种用法" class="headerlink" title="Mybatis另一种用法"></a>Mybatis另一种用法</h1><p>1.导jar包</p>
+<p>2.根据mybatis全局配置文件获取SqlSessionFactory对象</p>
+<p>3.通过SqlSessionFactory获取SqlSession对象</p>
+<p>3.提供一个xxxMapper接口,写dao方法</p>
+<p><code>BookMapper.java</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> List&lt;Book&gt; <span class="title">getBookList</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
-          
+<p>写一个sql映射文件</p>
+<p><code>BookMapper.xml</code></p>
+<p>namespace:接口的全类名<code>com.fengge.dao.BookMapper</code></p>
+<p>sql标签id值要和接口的方法保持一致</p>
+<p><code>BookMapper mapper =  SQLSession.getMapper(BookMapper.class)</code></p>
+<p>再用mapper调用接口里的方法,这里的mapper其实是BookMapper的代理类对象</p>
+<p>mapper.getBookList();</p>
+<h2 id="10-基于注解的-SQL-语句"><a href="#10-基于注解的-SQL-语句" class="headerlink" title="10.基于注解的 SQL 语句"></a>10.基于注解的 SQL 语句</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BooksMapper</span> </span>&#123;</span><br><span class="line"><span class="comment">//select * from book where id = #&#123;id&#125;</span></span><br><span class="line">    <span class="meta">@Select(&quot;select * from book where id = #&#123;id&#125;&quot;)</span><span class="comment">//代替sql映射文件中的select标签</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Book <span class="title">getBookById</span><span class="params">(Integer bid)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+
+
+
+
+<h1 id="SQL-映射文件"><a href="#SQL-映射文件" class="headerlink" title="SQL 映射文件"></a>SQL 映射文件</h1><h2 id="1、增删改查标签"><a href="#1、增删改查标签" class="headerlink" title="1、增删改查标签"></a>1、增删改查标签</h2><p>Mapper 接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">BooksMapper</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Book <span class="title">getBookById</span><span class="params">(Integer bid)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">insertBook</span><span class="params">(Book book)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">updateBook</span><span class="params">(Book book)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">deleteBookByBid</span><span class="params">(Integer bid)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>SQL 映射文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.atguigu.dao.BooksMapper&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 对于insert、delete、update、select标签，他们的parameterType都是可以省略的。</span></span><br><span class="line"><span class="comment">对于insert、delete、update、select标签，只有select标签有resultType属性</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getBookById&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.lang.Integer&quot;</span></span></span><br><span class="line"><span class="tag"><span class="attr">resultType</span>=<span class="string">&quot;com.atguigu.bean.Book&quot;</span>&gt;</span></span><br><span class="line">	select * from book where id = #&#123;bid&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">insert</span> <span class="attr">id</span>=<span class="string">&quot;insertBook&quot;</span>&gt;</span></span><br><span class="line">	insert into book values(null,#&#123;title&#125;,#&#123;author&#125;,#&#123;price&#125;,#&#123;sales&#125;,#&#123;stock&#125;,#&#123;imgPath&#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">insert</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;updateBook&quot;</span> &gt;</span></span><br><span class="line">	update book set title=#&#123;title&#125; where id =#&#123;id&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">delete</span> <span class="attr">id</span>=<span class="string">&quot;deleteBookByBid&quot;</span> &gt;</span></span><br><span class="line">	delete from book where id = #&#123;bid&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">delete</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>测试代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/************************************************************</span></span><br><span class="line"><span class="comment">对于增删改操作：需要提交事务</span></span><br><span class="line"><span class="comment">1.手动提交:sqlSession.commit();</span></span><br><span class="line"><span class="comment">2.自动提交:openSession(true)</span></span><br><span class="line"><span class="comment">************************************************************/</span></span><br><span class="line"><span class="comment">//mapper.deleteBookByBid(16);</span></span><br><span class="line">Book book=<span class="keyword">new</span> Book(<span class="number">30</span>,<span class="string">&quot;岳父&quot;</span>,<span class="string">&quot;天蚕土豆&quot;</span>,<span class="number">38.9</span>,<span class="number">100</span>,<span class="number">200</span>,<span class="string">&quot;static/img/default.jpg&quot;</span>);</span><br><span class="line"><span class="comment">// mapper.insertBook(book);</span></span><br><span class="line">mapper.updateBook(book);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2、SQL-片段"><a href="#2、SQL-片段" class="headerlink" title="2、SQL 片段"></a>2、SQL 片段</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- sql片段：做sql语句重用 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;SqlFrament&quot;</span>&gt;</span></span><br><span class="line">	id,title,author,price,sales,stock,img_path</span><br><span class="line"><span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>在使用到的地方通过 include 标签引入即可</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getBookById&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.lang.Integer&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;com.atguigu.bean.Book&quot;</span>&gt;</span></span><br><span class="line">	select <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;SqlFrament&quot;</span>/&gt;</span> from book where id = #&#123;bid&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3、resultMap-标签"><a href="#3、resultMap-标签" class="headerlink" title="3、resultMap 标签"></a>3、resultMap 标签</h2><p>当表的列名和 pojo 对象的属性名不对应的时候？有几种解决方案 </p>
+<ol>
+<li>给表的列名起别名 </li>
+<li>在 mybatis 的全局配置文件中开启 mapUnderscoreToCamelCase </li>
+<li>使用 ResultMap 标签</li>
+</ol>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--该标签的作用：做结果映射 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;getBookByIdResultMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.atguigu.bean.Book&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 主键映射用id标签--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;id&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 普通字段用result标签映射--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;title&quot;</span> <span class="attr">property</span>=<span class="string">&quot;title&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;author&quot;</span> <span class="attr">property</span>=<span class="string">&quot;author&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;price&quot;</span> <span class="attr">property</span>=<span class="string">&quot;price&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;sales&quot;</span> <span class="attr">property</span>=<span class="string">&quot;sales&quot;</span>/&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 当表的列名和pojo对象的属性名一致的情况下，resultMap能自动完成映射--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">result</span> <span class="attr">column</span>=<span class="string">&quot;img_path&quot;</span> <span class="attr">property</span>=<span class="string">&quot;imgPath&quot;</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">resultType和resultMap都是处理sql语句返回结果，只能同时存在一个属性。</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;getBookById&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;java.lang.Integer&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;getBookByIdResultMap&quot;</span>&gt;</span></span><br><span class="line">	select id,title,author,price,sales,stock,img_path from book where id = #&#123;bid&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>总结:ResultMap 标签作用：<br>                1.做结果映射<br>                2.将有关联关系的表的数据直接映射为 POJO 对象的关联关系。这个功能是 select 标签的 resultType 属性所不具备的，resultType 属性只能完成单表映</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2019/06/08/mybatis%E5%8F%A6%E4%B8%80%E7%A7%8D%E7%94%A8%E6%B3%95/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/07/Mybatis%E5%85%A5%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2019-06-07T12:50:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-07</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/06/08/MyBatis-%E7%9A%84%E5%85%A8%E5%B1%80%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-%E4%B8%8D%E9%87%8D%E8%A6%81/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          MyBatis 的全局配置文件[不重要]
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/06/07/Mybatis%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Mybatis入门</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/07/Mybatis%E5%85%A5%E9%97%A8/">Mybatis入门</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/04/SpringMVC%E7%9A%84%E8%A1%A5%E5%85%85-%E4%B8%80/" class="archive-article-date">
-  	<time datetime="2019-06-04T10:50:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/04/SpringMVC%E7%9A%84%E8%A1%A5%E5%85%85-%E4%B8%80/">Springmvc的补充(一)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">springmvc</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">非常重要</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/06/02/SpringMVC%E5%85%A5%E9%97%A8/" class="archive-article-date">
-  	<time datetime="2019-06-02T12:49:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-06-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/06/02/SpringMVC%E5%85%A5%E9%97%A8/">SpringMVC入门</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">springmvc</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
   
 
 
@@ -499,8 +388,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
